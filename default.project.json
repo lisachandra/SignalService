@@ -1,4 +1,35 @@
 {
-    "name": "Signal",
-    "tree": {"$path": "src"}
+  "name": "Signal",
+  "tree": {
+    "$className": "DataModel",
+
+    "ReplicatedStorage": {
+      "$className": "ReplicatedStorage",
+      "$ignoreUnknownInstances": true,
+      "Signal": {
+        "$path": "src",
+        "$ignoreUnknownInstances": true
+      },
+
+      "Tests": {
+        "$className": "Folder",
+        "$ignoreUnknownInstances": true,
+        "$path": "test"
+      }
+    },
+
+    "StarterPlayer": {
+      "$className": "StarterPlayer",
+      "$ignoreUnknownInstances": true,
+      "StarterPlayerScripts": {
+        "$className": "StarterPlayerScripts",
+        "$ignoreUnknownInstances": true,
+        "Client": {
+          "$className": "Folder",
+          "$ignoreUnknownInstances": true,
+          "$path": "client"
+        }
+      }
+    }
+  }
 }
