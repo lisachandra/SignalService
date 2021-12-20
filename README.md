@@ -12,7 +12,7 @@ This project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
-- [wally installation](https://wally.run/package/zxibs/signalservice) now only includes the files inside src.
+- [wally package](https://wally.run/package/zxibs/signalservice) now only includes the files inside src.
 
 ## 0.2.0 - 2021-12-20
 
