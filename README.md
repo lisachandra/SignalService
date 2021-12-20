@@ -12,13 +12,13 @@ This project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
-- [wally package](https://wally.run/package/zxibs/signalservice) now only includes the files inside src.
+- [Wally package](https://wally.run/package/zxibs/signalservice) now only includes the files inside src.
 
 ## 0.2.0 - 2021-12-20
 
 ### Added
 
-- SignalService is now on [wally](https://github.com/UpliftGames/wally)!
+- SignalService is now on [wally](https://wally.run/package/zxibs/signalservice)!
 - `Signal:Destroy()` now sets the signal's metatable to nil and runs `Signal:DisconnectAll()` before destroying
 - A __tostring metatable that returns the ClassName (Signal or Connection) to `strict.lua`
 - A SignalService class
