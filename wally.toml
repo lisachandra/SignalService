@@ -8,8 +8,26 @@ description = "This module allows you to create custom events, see the documenta
 
 registry = "https://github.com/UpliftGames/wally-index"
 
-version = "0.2.0"
+version = "0.2.1"
 
 license = "MIT"
 
 include = ["src"]
+
+exclude = [
+    ".vscode",
+    "debug",
+    "docs",
+    "test",
+    ".gitignore",
+    ".styluaignore",
+    "test.project.json",
+    "default.project.json",
+    "LICENSE.md",
+    "README.md",
+    "testez-companion.toml",
+    "roblox.toml",
+    "selene.toml",
+    "stylua.toml",
+    "wally.toml"
+]
