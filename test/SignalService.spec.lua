@@ -1,0 +1,108 @@
+--# selene: allow(undefined_variable)
+return function()
+    local SignalService = require(script.Parent.Parent.SignalService)
+
+    describe("new", function()
+        it("should create a new signal", function()
+            local signalObject = SignalService.new()
+            expect(SignalService.isSignal(signalObject)).to.be.equal(true)
+        end)
+    end)
+
+    describe("isSignal", function()
+        it("should be true", function()
+            local signalObject = SignalService.new()
+            expect(SignalService.isSignal(signalObject)).to.be.equal(true)
+        end)
+
+        it("should be false", function()
+            local fakeSignalObject = {}
+            expect(SignalService.isSignal(fakeSignalObject)).to.be.equal(false)
+        end)
+    end)
+
+    describe("destroy", function()
+        it("should destroy the signal and disconnect all connections", function()
+            local signalObject = SignalService.new()
+            local connection = signalObject:Connect(function()
+                
+            end)
+
+            local connection2 = signalObject:Connect(function()
+                
+            end)
+
+            signalObject:Destroy()
+            expect(connection.Connected).to.be.equal(false)
+            expect(connection2.Connected).to.be.equal(false)
+            expect(SignalService.isSignal(signalObject)).to.be.equal(false)
+        end)
+    end)
+
+    describe("connect", function()
+        it("should return a connection", function()
+            local signalObject = SignalService.new()
+            local connection = signalObject:Connect(function()
+                
+            end)
+
+            expect(SignalService.isSignal(connection)).to.be.equal(true)
+            expect(connection.Connected).to.be.equal(true)
+        end)
+    end)
+
+    describe("fire", function()
+        it("should fire the signal with the correct arguments", function()
+            local signalObject = SignalService.new()
+
+            signalObject:Connect(function(string)
+                expect(string).to.be.equal("correct!")
+            end)
+
+            signalObject:Fire("correct!")
+        end)
+    end)
+
+    describe("disconnect", function()
+        it("should disconnect the connection", function()
+            local signalObject = SignalService.new()
+            local connection = signalObject:Connect(function()
+                
+            end)
+
+            connection:Disconnect()
+            expect(connection.Connected).to.be.equal(false)
+        end)
+    end)
+
+    describe("disconnectAll", function()
+        it("should disconnect all connections", function()
+            local signalObject = SignalService.new()
+            local connection = signalObject:Connect(function()
+                
+            end)
+
+            local connection2 = signalObject:Connect(function()
+                
+            end)
+
+            signalObject:DisconnectAll()
+            expect(connection.Connected).to.be.equal(false)
+            expect(connection2.Connected).to.be.equal(false)
+        end)
+    end)
+
+    describe("wait", function()
+        it("should yield the thread then when fired, resume with the correct arguments", function()
+            local signalObject = SignalService.new()
+            task.delay(2, function()
+                signalObject:Fire("this", "is correct")
+            end)
+
+            local string, string2 = signalObject:Wait()
+
+            expect(string).to.be.equal("this")
+            expect(string2).to.be.equal("is correct")
+        end)
+    end)
+end

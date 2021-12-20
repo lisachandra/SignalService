@@ -1,20 +1,20 @@
 {
-  "name": "Signal",
+  "name": "SignalService",
   "tree": {
     "$className": "DataModel",
 
     "ReplicatedStorage": {
       "$className": "ReplicatedStorage",
       "$ignoreUnknownInstances": true,
-      "Signal": {
+      "SignalService": {
         "$path": "src",
         "$ignoreUnknownInstances": true
       },
 
       "Tests": {
+        "$path": "test",
         "$className": "Folder",
-        "$ignoreUnknownInstances": true,
-        "$path": "test"
+        "$ignoreUnknownInstances": true
       }
     },
 
@@ -22,13 +22,9 @@
       "$className": "StarterPlayer",
       "$ignoreUnknownInstances": true,
       "StarterPlayerScripts": {
-        "$className": "StarterPlayerScripts",
         "$ignoreUnknownInstances": true,
-        "Client": {
-          "$className": "Folder",
-          "$ignoreUnknownInstances": true,
-          "$path": "client"
-        }
+        "$className": "StarterPlayerScripts",
+        "$path": "debug"
       }
     }
   }

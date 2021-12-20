@@ -1,6 +1,6 @@
 [package]
 
-name = "zxibs/signal"
+name = "zxibs/signalservice"
 
 realm = "shared"
 
@@ -8,19 +8,8 @@ description = "This module allows you to create custom events, see the documenta
 
 registry = "https://github.com/UpliftGames/wally-index"
 
-version = "0.1.0"
+version = "0.2.0"
 
 license = "MIT"
 
 include = ["src"]
-
-exclude = [
-    "docs",
-    "test",
-    "default.project.json",
-    "roblox.toml",
-    "selene.toml",
-    "wally.toml",
-    ".gitignore",
-    "README.md"
-]
