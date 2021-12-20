@@ -4,11 +4,11 @@ local strict = require(script.Parent.strict)
 
 ]]
 ---@param self Signal
----@param callback function
+---@param callbackFunction fun()
 ---@return Connection
-local function Connect(self, callback)
-	local callbackId = #self.__callbacks + 1
-	table.insert(self.__callbacks, callbackId, callback)
+local function Connect(self, callbackFunction)
+	local id = tostring(Random.new():NextInteger(1, math.huge))
+	self.__callbacks[id] = callbackFunction
 
 	--[[
         
@@ -16,14 +16,16 @@ local function Connect(self, callback)
 	---@class Connection
 	local Connection = {
 		__signal = self,
-		__callbackId = callbackId,
+		__id = id,
 
 		Connected = true,
 
-		Disconnect = require(script.Parent.Disconnect),
+		Disconnect = require(script.Parent:WaitForChild("Disconnect")),
 	}
 
-	return strict(Connection, "Connection")
+	Connection = strict(Connection, "Connection")
+	self.__connections[id] = Connection
+	return Connection
 end
 
 return Connect

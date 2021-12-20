@@ -1,12 +1,14 @@
 --[[
 
 ]]
----@param signalObject Signal | Connection
+---@param signalObject any
 ---@return boolean
 local function isSignal(signalObject)
-	local bool = signalObject.__type and true or false
-
-	return bool
+	if tostring(signalObject) == "Signal" or tostring(signalObject) == "Connection" and typeof(signalObject) == "table" then
+		return true
+	else
+		return false
+	end
 end
 
 return isSignal

@@ -10,14 +10,15 @@ local function new()
     ]]
 	---@class Signal
 	local Signal = {
+		__connections = {},
 		__callbacks = {},
 		__waiters = {},
 
-		Fire = require(script.Parent.Fire),
-		Wait = require(script.Parent.Wait),
-		Connect = require(script.Parent.Connect),
-		Destroy = require(script.Parent.Destroy),
-		DisconnectAll = require(script.Parent.DisconnectAll),
+		Fire = require(script.Parent:WaitForChild("Fire")),
+		Wait = require(script.Parent:WaitForChild("Wait")),
+		Connect = require(script.Parent:WaitForChild("Connect")),
+		Destroy = require(script.Parent:WaitForChild("Destroy")),
+		DisconnectAll = require(script.Parent:WaitForChild("DisconnectAll")),
 	}
 
 	return strict(Signal, "Signal")

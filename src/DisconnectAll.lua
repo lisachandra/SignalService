@@ -3,8 +3,8 @@
 ]]
 ---@param self Signal
 local function DisconnectAll(self)
-	for index, _ in pairs(self.__callbacks) do
-		self.__callbacks[index] = nil
+	for _, connection in pairs(self.__connections) do
+		connection:Disconnect()
 	end
 end
 

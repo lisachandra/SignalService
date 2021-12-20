@@ -13,6 +13,10 @@ local function strict(t, name)
 
 			error(message, 2)
 		end,
+
+		__tostring = function()
+			return name
+		end,
 	})
 end
 

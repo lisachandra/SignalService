@@ -1,6 +1,7 @@
-return {
+---@class SignalService
+local SignalService = {
 	new = require(script.new),
 	isSignal = require(script.isSignal),
-
-	Destroy = require(script.Destroy),
 }
+
+return SignalService
