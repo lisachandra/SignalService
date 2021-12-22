@@ -1,19 +1,19 @@
 local strict = require(script.Parent.strict)
 
---[[
+local function createId(self)
+	local id = tostring(Random.new():NextInteger(0, math.huge))
 
-]]
----@param self Signal
----@param callbackFunction fun()
----@return Connection
+	if self.__callbacks[id] then
+		return createId()
+	else
+		return id
+	end
+end
+
 local function Connect(self, callbackFunction)
-	local id = tostring(Random.new():NextInteger(1, math.huge))
+	local id = createId(self)
 	self.__callbacks[id] = callbackFunction
 
-	--[[
-        
-    ]]
-	---@class Connection
 	local Connection = {
 		__signal = self,
 		__id = id,

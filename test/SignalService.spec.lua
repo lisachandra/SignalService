@@ -2,16 +2,14 @@
 return function()
     local SignalService = require(script.Parent.Parent.SignalService)
 
-    describe("new", function()
-        it("should create a new signal", function()
-            local signalObject = SignalService.new()
-            expect(SignalService.isSignal(signalObject)).to.be.equal(true)
-        end)
-    end)
-
     describe("isSignal", function()
         it("should be true", function()
-            local signalObject = SignalService.new()
+            local signalObject = setmetatable({}, {
+                __tostring = function()
+                    return "Signal"
+                end
+            })
+
             expect(SignalService.isSignal(signalObject)).to.be.equal(true)
         end)
 
@@ -21,9 +19,20 @@ return function()
         end)
     end)
 
-    describe("destroy", function()
-        it("should destroy the signal and disconnect all connections", function()
+    describe("new", function()
+        it("should create a new signal", function(context)
             local signalObject = SignalService.new()
+            context.addSignal(signalObject)
+
+            expect(SignalService.isSignal(signalObject)).to.be.equal(true)
+        end)
+    end)
+
+    describe("destroy", function()
+        it("should destroy the signal and disconnect all connections", function(context)
+            local signalObject = SignalService.new()
+            context.addSignal(signalObject)
+
             local connection = signalObject:Connect(function()
                 
             end)
@@ -40,8 +49,10 @@ return function()
     end)
 
     describe("connect", function()
-        it("should return a connection", function()
+        it("should return a connection", function(context)
             local signalObject = SignalService.new()
+            context.addSignal(signalObject)
+
             local connection = signalObject:Connect(function()
                 
             end)
@@ -52,8 +63,10 @@ return function()
     end)
 
     describe("fire", function()
-        it("should fire the signal with the correct arguments", function()
+        it("should fire the signal with the correct arguments", function(context)
             local signalObject = SignalService.new()
+            context.addSignal(signalObject)
+
 
             signalObject:Connect(function(string)
                 expect(string).to.be.equal("correct!")
@@ -64,8 +77,10 @@ return function()
     end)
 
     describe("disconnect", function()
-        it("should disconnect the connection", function()
+        it("should disconnect the connection", function(context)
             local signalObject = SignalService.new()
+            context.addSignal(signalObject)
+
             local connection = signalObject:Connect(function()
                 
             end)
@@ -76,8 +91,10 @@ return function()
     end)
 
     describe("disconnectAll", function()
-        it("should disconnect all connections", function()
+        it("should disconnect all connections", function(context)
             local signalObject = SignalService.new()
+            context.addSignal(signalObject)
+
             local connection = signalObject:Connect(function()
                 
             end)
@@ -93,8 +110,10 @@ return function()
     end)
 
     describe("wait", function()
-        it("should yield the thread then when fired, resume with the correct arguments", function()
+        it("should yield the thread then when fired, resume with the correct arguments", function(context)
             local signalObject = SignalService.new()
+            context.addSignal(signalObject)
+
             task.delay(2, function()
                 signalObject:Fire("this", "is correct")
             end)
