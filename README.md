@@ -8,6 +8,12 @@ This service allows you to create custom events, see the documentation for more 
 
 This project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.3.0 - 2021-12-22
+
+### Added
+
+- Type checks using [t module](https://github.com/osyrisrblx/t).
+
 ## 0.2.2 - 2021-12-22
 
 ### Added

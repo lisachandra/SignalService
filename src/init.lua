@@ -1,6 +1,6 @@
 local SignalService = {
-	new = require(script.new),
-	isSignal = require(script.isSignal),
+	new = require(script:WaitForChild("new")),
+	isSignal = require(script:WaitForChild("isSignal")),
 }
 
 return SignalService

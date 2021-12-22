@@ -1,6 +1,6 @@
 --# selene: allow(undefined_variable)
 return function()
-    local SignalService = require(script.Parent.Parent.SignalService)
+    local SignalService = require(script.Parent.Parent:WaitForChild("SignalService"))
 
     describe("isSignal", function()
         it("should be true", function()
