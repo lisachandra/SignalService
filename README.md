@@ -8,6 +8,24 @@ This service allows you to create custom events, see the documentation for more 
 
 This project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.2.2 - 2021-12-22
+
+### Added
+
+- [Intellisense module](https://github.com/zxibs/SignalService/blob/main/src/intellisense.lua)
+
+### Changed
+
+- Unique ID generation for connections to avoid the very unlikely case of an id being the same as another
+
+### Fixed
+
+- Callbacks not firing
+
+### Removed
+
+- Removed EmmyLua annotations and moved it to the [intellisense module](https://github.com/zxibs/SignalService/blob/main/src/intellisense.lua)
+
 ## 0.2.1 - 2021-12-20
 
 ### Changed
