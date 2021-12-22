@@ -8,6 +8,12 @@ This service allows you to create custom events, see the documentation for more 
 
 This project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.3.1 - 2021-12-22
+
+### Added
+
+- A strict interface to SignalService
+
 ## 0.3.0 - 2021-12-22
 
 ### Added
