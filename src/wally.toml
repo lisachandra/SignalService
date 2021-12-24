@@ -4,7 +4,7 @@ name = "zxibs/signalservice"
 
 realm = "shared"
 
-description = "This module allows you to create custom events, see the documentation for more info: (documentation is not available yet.) github: https://github.com/zxibs/SignalService"
+description = "This module allows you to create custom events, see the documentation for more info: https://zxibs.github.io/SignalService/ github: https://github.com/zxibs/SignalService"
 
 registry = "https://github.com/UpliftGames/wally-index"
 
