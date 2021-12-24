@@ -161,6 +161,7 @@ local Connection = {}
     Disconnects/Destroys the connection for GC
     and sets the `Connection.Connected` property to false
     ```lua
+    ---@type Connection -- This is for IntelliSense
     local Connection = Signal:Connect(function() end)
     Connection:Disconnect()
 
