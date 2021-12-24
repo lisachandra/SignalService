@@ -4,6 +4,7 @@ gitSourceBranch = "main"
 
 [docusaurus]
 tagline = "A service that allows you to create custom events."
+baseUrl = "/SignalService/"
 
 [home]
 enabled = true
