@@ -33,7 +33,7 @@ function SignalService.new() end
 --- Returns true if the passed in signal is a signal, returns false if it's not
 ---@param signalToCheck Signal
 ---@return boolean
-function SignalService.isWrapped(signalToCheck) end
+function SignalService.isSignal(signalToCheck) end
 
 -- Signal type
 
