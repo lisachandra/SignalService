@@ -8,8 +8,8 @@ This project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
-- `<Signal>:Dispatch` which is very similar to rodux's dispatch
-- `<Signal>:onDispatch` which is very similar to `Rodux.createReducer`
+- `<Signal>:Dispatch()` which is very similar to [`Rodux.Store:dispatch()`](https://roblox.github.io/rodux/api-reference/#storedispatch)
+- `<Signal>:onDispatch()` which is very similar to [`Rodux.createReducer()`](https://roblox.github.io/rodux/api-reference/#roduxcreatereducer)
 
 ## 0.3.1 - 2021-12-22
 
