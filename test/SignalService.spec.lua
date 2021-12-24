@@ -124,4 +124,38 @@ return function()
             expect(string2).to.be.equal("is correct")
         end)
     end)
+
+    describe("onDispatch", function()
+        it("should add a new dispatch", function(context)
+            local signalObject = SignalService.new()
+            context.addSignal(signalObject)
+
+            signalObject:onDispatch({
+                NewDispatch = function()
+                    
+                end
+            })
+
+            expect(signalObject.__dispatchHandler.NewDispatch).to.be.a("function")
+        end)
+    end)
+
+    describe("dispatch", function()
+        it("should dispatch with the correct arguments", function(context)
+            local signalObject = SignalService.new()
+            context.addSignal(signalObject)
+
+            signalObject:onDispatch({
+                NewDispatch = function(action)
+                    print(action.string)
+                    expect(action.string).to.be.equal("This is a dispatch running")
+                end
+            })
+
+            signalObject:Dispatch({
+                type = "NewDispatch",
+                string = "This is a dispatch running"
+            })
+        end)
+    end)
 end
