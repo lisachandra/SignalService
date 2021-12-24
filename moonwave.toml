@@ -1,10 +1,11 @@
+title = "SignalService"
+
 classOrder = ["SignalService", "Signal", "Connection"]
 changelog = true
 gitSourceBranch = "main"
 
 [docusaurus]
 tagline = "A service that allows you to create custom events."
-projectName = "SignalService"
 baseUrl = "/SignalService/"
 
 [home]
