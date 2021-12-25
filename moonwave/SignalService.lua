@@ -59,7 +59,7 @@ function Signal:Fire(...) end
     end)
 
     -- this will yield the thread for approximately 2 seconds
-    local randomInteger = Signal:Wait() -- returns "it waited!" 
+    local stringArgument = Signal:Wait() -- returns "it waited!" 
     ```
 
     @return any
