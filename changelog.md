@@ -4,6 +4,16 @@
 
 This project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.4.2 - 2022-01-04
+
+### Added
+
+- SignalService, Signal and Connection types to init.lua
+
+### Removed
+
+- intellisense module
+
 ## 0.4.1 - 2021-12-24
 
 ### Added

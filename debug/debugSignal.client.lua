@@ -2,8 +2,9 @@ local _waitForGame = game:IsLoaded() or game.Loaded:Wait()
 
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
----@type SignalService
-local SignalService = require(ReplicatedStorage:WaitForChild("SignalService"))
+local Packages = ReplicatedStorage:WaitForChild("Packages")
+
+local SignalService = require(Packages:WaitForChild("SignalService"))
 
 local signalObject = SignalService.new()
 local connection = signalObject:Connect(function() end)

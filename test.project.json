@@ -1,30 +1,30 @@
 {
-  "name": "SignalService",
+  "name": "SignalService-test",
   "tree": {
     "$className": "DataModel",
 
-    "ReplicatedStorage": {
-      "$className": "ReplicatedStorage",
-      "$ignoreUnknownInstances": true,
-      "SignalService": {
-        "$path": "src",
-        "$ignoreUnknownInstances": true
-      },
+     "ReplicatedStorage": {
+          "$className": "ReplicatedStorage",
+          "$ignoreUnknownInstances": true,
+          
+          "Packages": {
+               "$path": "Packages",
+               "$ignoreUnknownInstances": true
+          },
 
-      "Tests": {
-        "$path": "test",
-        "$className": "Folder",
-        "$ignoreUnknownInstances": true
-      }
-    },
+          "Tests": {
+               "$path": "test",
+               "$ignoreUnknownInstances": true
+          }
+     },
 
-    "StarterPlayer": {
-      "$className": "StarterPlayer",
-      "StarterPlayerScripts": {
-        "$className": "StarterPlayerScripts",
-        "$ignoreUnknownInstances": true,
-        "$path": "debug"
-      }
-    }
+     "StarterPlayer": {
+          "$className": "StarterPlayer",
+          "StarterPlayerScripts": {
+               "$className": "StarterPlayerScripts",
+               "$ignoreUnknownInstances": true,
+               "$path": "debug"
+          }
+     }
   }
 }
