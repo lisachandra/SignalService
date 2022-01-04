@@ -10,7 +10,6 @@ local SignalService = {}
 --[=[
     Creates a new signal
     ```lua
-    ---@type Signal -- This is for IntelliSense
     local Signal = SignalService.new()
     ```
 
@@ -76,7 +75,6 @@ function Signal:Wait() end
     Returns a connection that can be disconnected by calling  
     `<Connection>:Disconnect()`
     ```lua
-    ---@type Connection -- This is for IntelliSense
     local Connection = Signal:Connect(function(arg1, boolean, integer)
         print(arg1, tostring(boolean), tostring(integer))
         -- Outputs `Argument1 true 3`
@@ -161,7 +159,6 @@ local Connection = {}
     Disconnects/Destroys the connection for GC
     and sets the `Connection.Connected` property to false
     ```lua
-    ---@type Connection -- This is for IntelliSense
     local Connection = Signal:Connect(function() end)
     Connection:Disconnect()
 
