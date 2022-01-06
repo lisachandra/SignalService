@@ -1,0 +1,14 @@
+{
+    "name": "signalservice-publish",
+    "tree": {
+        "$className": "DataModel",
+
+        "ReplicatedStorage": {
+            "$className": "ReplicatedStorage",
+
+            "Packages": {
+                "$path": "Packages"
+            }
+        }
+    }
+}
