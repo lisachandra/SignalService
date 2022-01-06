@@ -1,0 +1,20 @@
+{
+    "name": "signalservice-test",
+    "tree": {
+        "$className": "DataModel",
+
+        "ReplicatedStorage": {
+            "$className": "ReplicatedStorage",
+
+            "Packages": {
+                "$ignoreUnknownInstances": true,
+                "$path": "Packages"
+            },
+
+            "Tests": {
+                "$ignoreUnknownInstances": true,
+                "$path": "Tests"
+            }
+        }
+    }
+}
