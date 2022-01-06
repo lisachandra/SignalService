@@ -4,6 +4,12 @@
 
 This project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.4.3 - 2022-01-06
+
+### Added
+
+- [LICENSE.md](LICENSE.md) and [README.md](README.md) to the wally package
+
 ## 0.4.2 - 2022-01-04
 
 ### Added
