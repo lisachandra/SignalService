@@ -51,7 +51,7 @@ jobs:
       - name: Create .zip file
         uses: montudor/action-zip@v1
         with:
-          args: zip -qq -r publish/SignalService.zip publish/Packages
+          args: zip -qq -r SignalService.zip publish/Packages
       
       - name: Publish release to github
         uses: softprops/action-gh-release@v1
