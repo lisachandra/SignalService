@@ -1,8 +1,12 @@
 [package]
-name = "zxibs/signalservice-test"
-version = "0.1.0"
-registry = "https://github.com/UpliftGames/wally-index"
+name = "zxibs/signalservice"
 realm = "shared"
+description = "This module allows you to create custom events, see the documentation for more info: https://zxibs.github.io/SignalService/ github: https://github.com/zxibs/SignalService"
+registry = "https://github.com/UpliftGames/wally-index"
+version = "0.4.3"
+license = "MIT"
+exclude = ["*"]
+include = ["LICENSE.md", "README.md", "src", "src/**", "wally.toml", "default.project.json"]
 
 [dependencies]
-SignalService = "zxibs/signalservice@^0"
+t = "osyrisrblx/t@^3"
