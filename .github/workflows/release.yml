@@ -49,10 +49,11 @@ jobs:
           cd ..
 
       - name: Create .zip file
-        run: cd publish
-        uses: montudor/action-zip@v1
-        with:
-          args: zip -qq -r SignalService.zip Packages
+        run: |
+          cd publish
+          sudo apt-get install zip
+          zip -r SignalService.zip Packages
+          cd ..
       
       - name: Publish release to github
         uses: softprops/action-gh-release@v1
