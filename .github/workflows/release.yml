@@ -33,14 +33,23 @@ jobs:
         run: |
           cd publish
           wally install
+          cd ..
 
       - name: Build place file
-        run: rojo build publish.project.json -o SignalService.rbxl
+        run: |
+          cd publish
+          rojo build publish.project.json -o SignalService.rbxl
+          cd ..
 
       - name: Create .rbxm file
-        run: remodel run createRBXMFile.lua
+        shell: bash
+        run: |
+          cd publish
+          remodel run createRBXMFile.lua
+          cd ..
 
       - name: Create .zip file
+        run: cd publish
         uses: montudor/action-zip@v1
         with:
           args: zip -qq -r SignalService.zip Packages
@@ -49,7 +58,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           fail_on_unmatched_files: true
-          body_path: ReleaseNote.md
+          body_path: publish/ReleaseNote.md
           files: |
-              SignalService.rbxm
-              SignalService.zip
+              publish/SignalService.rbxm
+              publish/SignalService.zip
