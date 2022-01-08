@@ -1,17 +1,15 @@
 # Changelog
+All notable changes to this project will be documented in this file.
 
-(almost) All changes in this project will be documented here.
-
-This project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## 0.4.3 - 2022-01-06
-
 ### Added
 
 - [LICENSE.md](LICENSE.md) and [README.md](README.md) to the wally package
 
 ## 0.4.2 - 2022-01-04
-
 ### Added
 
 - SignalService, Signal and Connection types to init.lua
@@ -21,32 +19,27 @@ This project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - intellisense module
 
 ## 0.4.1 - 2021-12-24
-
 ### Added
 
 - [Moonwave documentation](https://zxibs.github.io/SignalService/)
 
 ## 0.4.0 - 2021-12-24
-
 ### Added
 
 - `<Signal>:Dispatch()` which is very similar to [`Rodux.Store:dispatch()`](https://roblox.github.io/rodux/api-reference/#storedispatch)
 - `<Signal>:onDispatch()` which is very similar to [`Rodux.createReducer()`](https://roblox.github.io/rodux/api-reference/#roduxcreatereducer)
 
 ## 0.3.1 - 2021-12-22
-
 ### Added
 
 - A strict interface to SignalService
 
 ## 0.3.0 - 2021-12-22
-
 ### Added
 
 - Type checks using [t module](https://github.com/osyrisrblx/t).
 
 ## 0.2.2 - 2021-12-22
-
 ### Added
 
 - [Intellisense module](https://github.com/zxibs/SignalService/blob/main/src/intellisense.lua)
@@ -64,13 +57,11 @@ This project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Removed EmmyLua annotations and moved it to the [intellisense module](https://github.com/zxibs/SignalService/blob/main/src/intellisense.lua)
 
 ## 0.2.1 - 2021-12-20
-
 ### Changed
 
 - [Wally package](https://wally.run/package/zxibs/signalservice) now only includes the files inside src.
 
 ## 0.2.0 - 2021-12-20
-
 ### Added
 
 - SignalService is now on [wally](https://wally.run/package/zxibs/signalservice)!
