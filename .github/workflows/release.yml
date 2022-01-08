@@ -47,7 +47,7 @@ jobs:
           cd publish
           remodel run build.lua
           cd ..
-s
+
       - name: Create .zip file
         shell: bash
         run: |
