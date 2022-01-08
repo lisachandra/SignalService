@@ -1,5 +1,3 @@
---# selene: allow (unused_variable)
-
 -- SignalService type
 
 --[=[
@@ -18,9 +16,9 @@ local SignalService = {}
 function SignalService.new() end
 
 --[=[
-    Returns true if the passed in signal is a signal, returns false if it's not
+    Returns whether a class is a signal
     ```lua
-    local boolean = SignalService.isSignal(SignalService.new()) -- True
+    local boolean = SignalService.isSignal(SignalService.new()) -- true
     ```
 
     @param signalToCheck Signal
@@ -61,7 +59,7 @@ function Signal:Fire(...) end
     local stringArgument = Signal:Wait() -- returns "it waited!" 
     ```
 
-    @return any
+    @return ...
     @yields
 ]=]
 function Signal:Wait() end
@@ -83,7 +81,7 @@ function Signal:Wait() end
     Signal:Fire("Argument1", true, 3)
     ```
 
-    @param callbackFunction fun()
+    @param callbackFunction function(...: any)
     @return Connection
 ]=]
 function Signal:Connect(callbackFunction) end
@@ -112,7 +110,7 @@ function Signal:Destroy() end
     })
     ```
 
-    @param action table
+    @param action {type: string}
     @return any
 ]=]
 function Signal:Dispatch(action) end
@@ -132,7 +130,7 @@ function Signal:Dispatch(action) end
     })
     ```
 
-    @param dispatchHandlers table
+    @param dispatchHandlers {[string]: function(action: table)}
 ]=]
 function Signal:onDispatch(dispatchHandlers) end
 
