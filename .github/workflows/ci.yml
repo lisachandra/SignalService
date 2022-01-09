@@ -46,8 +46,8 @@ jobs:
           mkdir Packages/_Index/zxibs_signalservice
           cp -R ../src Packages/_Index/zxibs_signalservice/signalservice
           echo 'return require(script.Parent._Index["zxibs_signalservice"]["signalservice"])' > Packages/SignalService.lua
-          lua lemur.lua
           cd ..
+          lua test/lemur.lua
 
       - name: Format code using StyLua
         run: |
@@ -56,7 +56,6 @@ jobs:
       - name: Push changes
         run: |
           git config --global user.name 'github-actions'
-          git reset HEAD
           git add src/
           git commit -m "Formatted code using StyLua"
           git push
