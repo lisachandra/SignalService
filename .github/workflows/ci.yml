@@ -23,11 +23,7 @@ jobs:
         uses: leafo/gh-actions-luarocks@v4
 
       - name: Install dependencies for testing
-        run: |
-          luarocks install luafilesystem
-          luarocks install luasocket
-          luarocks install dkjson
-          luarocks install bit32
+        run: luarocks install luafilesystem
 
       - name: Install required tools
         uses: Roblox/setup-foreman@v1
