@@ -5,14 +5,14 @@
 -- If you add any dependencies, add them to this table so they'll be loaded!
 local LOAD_MODULES = {
 	{"test/Packages", "Packages"},
-	{"test/testez/src", "TestEZ"},
+	{"modules/testez/src", "TestEZ"},
 }
 
 -- This makes sure we can load Lemur and other libraries that depend on init.lua
 package.path = package.path .. ";?/init.lua"
 
 -- If this fails, make sure you've cloned all Git submodules of this repo!
-local lemur = require("test.lemur")
+local lemur = require("modules.lemur")
 
 -- Create a virtual Roblox tree
 local habitat = lemur.Habitat.new()
