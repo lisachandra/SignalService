@@ -42,7 +42,7 @@ jobs:
 
       - name: Test using TestEZ
         run: |
-          lua test/habitat.lua
+          lua test/lemur.lua
 
       - name: Format code using StyLua
         run: |
