@@ -1,5 +1,5 @@
 local strict = require(script.Parent:WaitForChild("strict"))
-local t = require(script.Parent.Parent:WaitForChild("t"))
+local t = require(script.Parent.Parent:WaitForChild("t")) or require(script.Parent.Parent.Parent.Parent:WaitForChild("t"))
 local SignalService = require(script.Parent)
 
 local connectCheck = t.tuple(SignalService.isSignal, t.callback)
