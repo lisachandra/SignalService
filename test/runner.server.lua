@@ -21,6 +21,7 @@ end, debug.traceback)
 
 local statusCode
 local errorMessage = nil
+
 if completed then
 	statusCode = result
 else
@@ -28,12 +29,13 @@ else
 	errorMessage = result
 end
 
-if __LEMUR__ then
+if _G.__LEMUR__ then
 	-- Lemur has access to normal Lua OS APIs
 
 	if errorMessage ~= nil then
 		print(errorMessage)
 	end
+
 	os.exit(statusCode)
 elseif isRobloxCli then
 	-- Roblox CLI has a special service to terminate the process
@@ -41,6 +43,7 @@ elseif isRobloxCli then
 	if errorMessage ~= nil then
 		print(errorMessage)
 	end
+    
 	ProcessService:ExitAsync(statusCode)
 else
 	-- In Studio, we can just throw an error to get the user's attention
