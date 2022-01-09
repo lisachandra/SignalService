@@ -5,7 +5,7 @@ local SignalService = require(script.Parent)
 local connectCheck = t.tuple(SignalService.isSignal, t.callback)
 
 local function createId(self)
-local id = tostring(Random.new():NextInteger(0, math.huge))
+    local id = tostring(Random.new():NextInteger(0, math.huge))
 
 	if self.__callbacks[id] then
 		return createId()
