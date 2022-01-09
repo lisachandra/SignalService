@@ -14,44 +14,64 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Add untracked files
+        run: |
+          git add -AN
+
+      - name: Check for modified files in src
+        id: git-check
+        run: echo ::set-output name=modified::$(if git diff --quiet HEAD -- src; then echo "false"; else echo "true"; fi)
+
       - name: Install Lua 5.1
+        if: steps.git-check.outputs.modified == 'true'
         uses: leafo/gh-actions-lua@v8
         with:
           luaVersion: "5.1"
 
       - name: Install luarocks
+        if: steps.git-check.outputs.modified == 'true'
         uses: leafo/gh-actions-luarocks@v4
 
       - name: Install dependencies for testing
+        if: steps.git-check.outputs.modified == 'true'
         run: luarocks install luafilesystem
 
       - name: Install required tools
+        if: steps.git-check.outputs.modified == 'true'
         uses: Roblox/setup-foreman@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Lint using Selene
+        if: steps.git-check.outputs.modified == 'true'
         run: |
           rm -f roblox.toml
           selene generate-roblox-std
           selene src/
 
       - name: Test using TestEZ
+        if: steps.git-check.outputs.modified == 'true'
+        shell: bash
         run: |
-          lua test/lemur.lua
+          DEPENDENCIES=$(awk '$0 == "[dependencies]" {i=1;next};i && i => 0' wally.toml)
+          cd test
+          echo "$DEPENDENCIES" >> wally.toml
+          wally install
+          cp -R ../src Packages/_Index/zxibs_signalservice/signalservice
+          echo 'return require(script.Parent._Index["zxibs_signalservice"]["signalservice"])' > Packages/SignalService.lua
+          lua lemur.lua
+          cd ..
 
       - name: Format code using StyLua
+        if: steps.git-check.outputs.modified == 'true'
         run: |
           stylua src/
-
-      - name: Check for modified files in src
-        id: git-check
-        run: echo ::set-output name=modified::$(if git diff --quiet HEAD -- src; then echo "false"; else echo "true"; fi)
 
       - name: Push changes
         if: steps.git-check.outputs.modified == 'true'
         run: |
           git config --global user.name 'github-actions'
+          git reset HEAD
           git add src/
           git commit -m "Formatted code using StyLua"
           git push
