@@ -29,7 +29,7 @@ else
 	errorMessage = result
 end
 
-if _G.__LEMUR__ then
+if __LEMUR__ then
 	-- Lemur has access to normal Lua OS APIs
 
 	if errorMessage ~= nil then
