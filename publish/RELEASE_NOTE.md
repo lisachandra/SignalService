@@ -13,7 +13,7 @@
 - Drag and drop the Packages folder to your codebase
 - Use [Rojo](https://rojo.space/) to sync the files into a place
 
-## [Wally](https://github.com/UpliftGames/wally) (Terminal)
+## [Wally](https://github.com/UpliftGames/wally)
 
 - Run wally init in your terminal (you don't have to do this if you already have a wally.toml file in your folder)
 - Add `SignalService = "zxibs/signalservice@^0"` to your dependencies list in your wally.toml file
