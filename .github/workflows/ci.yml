@@ -8,24 +8,11 @@ on:
 
 jobs:
   ci:
-    name: CI
+    name: Lint and Format
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        with:
-          submodules: true
-
-      - name: Install Lua 5.1
-        uses: leafo/gh-actions-lua@v8
-        with:
-          luaVersion: "5.1"
-
-      - name: Install luarocks
-        uses: leafo/gh-actions-luarocks@v4
-
-      - name: Install dependencies for testing
-        run: luarocks install luafilesystem
 
       - name: Install required tools
         uses: Roblox/setup-foreman@v1
@@ -36,24 +23,16 @@ jobs:
         run: |
           selene src/
 
-      - name: Test using TestEZ
-        shell: bash
-        run: |
-          DEPENDENCIES=$(awk '$0 == "[dependencies]" {i=1;next};i && i >= 0' wally.toml)
-          cd test
-          echo "$DEPENDENCIES" >> wally.toml
-          wally install
-          mkdir Packages/_Index/zxibs_signalservice
-          cp -R ../src Packages/_Index/zxibs_signalservice/signalservice
-          echo 'return require(script.Parent._Index["zxibs_signalservice"]["signalservice"])' > Packages/SignalService.lua
-          cd ..
-          lua test/lemur.lua
-
       - name: Format code using StyLua
         run: |
           stylua src/
 
+      - name: Check for modified files in src
+        id: git-check
+        run: echo ::set-output name=modified::$(if git diff --quiet HEAD -- src; then echo "false"; else echo "true"; fi)
+
       - name: Push changes
+        if: steps.git-check.outputs.modified == 'true'
         run: |
           git config --global user.name 'github-actions'
           git add src/
