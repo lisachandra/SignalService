@@ -49,7 +49,7 @@ jobs:
         if: steps.git-check.outputs.modified == 'true'
         shell: bash
         run: |
-          DEPENDENCIES=$(awk '$0 == "[dependencies]" {i=1;next};i && i => 0' wally.toml)
+          DEPENDENCIES=$(awk '$0 == "[dependencies]" {i=1;next};i && i >= 0' wally.toml)
           cd test
           echo "$DEPENDENCIES" >> wally.toml
           wally install
