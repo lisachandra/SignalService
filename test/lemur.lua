@@ -4,6 +4,7 @@
 
 -- If you add any dependencies, add them to this table so they'll be loaded!
 local LOAD_MODULES = {
+    {"test/Tests", "Tests"},
 	{"test/Packages", "Packages"},
 	{"modules/testez/src", "TestEZ"},
 }
