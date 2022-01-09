@@ -16,39 +16,27 @@ jobs:
         with:
           submodules: true
 
-      - name: Check for modified files in src
-        id: git-check
-        run: echo ::set-output name=modified::$(if git diff --quiet HEAD~1 -- src; then echo "false"; else echo "true"; fi)
-
       - name: Install Lua 5.1
-        if: steps.git-check.outputs.modified == 'true'
         uses: leafo/gh-actions-lua@v8
         with:
           luaVersion: "5.1"
 
       - name: Install luarocks
-        if: steps.git-check.outputs.modified == 'true'
         uses: leafo/gh-actions-luarocks@v4
 
       - name: Install dependencies for testing
-        if: steps.git-check.outputs.modified == 'true'
         run: luarocks install luafilesystem
 
       - name: Install required tools
-        if: steps.git-check.outputs.modified == 'true'
         uses: Roblox/setup-foreman@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Lint using Selene
-        if: steps.git-check.outputs.modified == 'true'
         run: |
-          rm -f roblox.toml
-          selene generate-roblox-std
           selene src/
 
       - name: Test using TestEZ
-        if: steps.git-check.outputs.modified == 'true'
         shell: bash
         run: |
           DEPENDENCIES=$(awk '$0 == "[dependencies]" {i=1;next};i && i >= 0' wally.toml)
@@ -62,12 +50,10 @@ jobs:
           cd ..
 
       - name: Format code using StyLua
-        if: steps.git-check.outputs.modified == 'true'
         run: |
           stylua src/
 
       - name: Push changes
-        if: steps.git-check.outputs.modified == 'true'
         run: |
           git config --global user.name 'github-actions'
           git reset HEAD
