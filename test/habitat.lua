@@ -1,6 +1,4 @@
-package.path = package.path .. ";?/init.lua"
-
-local lemur = require("lemur")
+local lemur = require("test/lemur/init.lua")
 
 local habitat = lemur.habitat.new()
 local ReplicatedStorage = habitat.game:GetService("ReplicatedStorage")
