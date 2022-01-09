@@ -6,11 +6,11 @@
 - Drag and drop the file to Roblox Studio
 - Move the file to ReplicatedStorage
 
-## [Rojo](https://rojo.space/)
+## Filesystem
 
 - Install [SignalService.zip](zip)
 - Right-click SignalService.zip and click `Extract here`
-- Drag and drop the Packages folder to your editor
+- Drag and drop the Packages folder to your codebase
 - Use [Rojo](https://rojo.space/) to sync the files into a place
 
 ## [Wally](https://github.com/UpliftGames/wally) (Terminal)
