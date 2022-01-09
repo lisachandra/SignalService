@@ -82,9 +82,7 @@ return function()
                local signalObject = SignalService.new()
                context.addSignal(signalObject)
 
-               local connection = signalObject:Connect(function()
-                    
-               end)
+               local connection = signalObject:Connect(function() end)
 
                connection:Disconnect()
                expect(connection.Connected).to.be.equal(false)
@@ -96,13 +94,9 @@ return function()
                local signalObject = SignalService.new()
                context.addSignal(signalObject)
 
-               local connection = signalObject:Connect(function()
-                    
-               end)
+               local connection = signalObject:Connect(function() end)
 
-               local connection2 = signalObject:Connect(function()
-                    
-               end)
+               local connection2 = signalObject:Connect(function() end)
 
                signalObject:DisconnectAll()
                expect(connection.Connected).to.be.equal(false)

@@ -8,11 +8,26 @@ on:
 
 jobs:
   ci:
-    name: Lint and Format
+    name: CI
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
+      - name: Install Lua 5.1
+        uses: leafo/gh-actions-lua@v8
+        with:
+          luaVersion: "5.1"
+
+      - name: Install luarocks
+        uses: leafo/gh-actions-luarocks@v4
+
+      - name: Install dependencies for testing
+        run: |
+          luarocks install luafilesystem
+          luarocks install luasocket
+          luarocks install dkjson
+          luarocks install bit32
 
       - name: Install required tools
         uses: Roblox/setup-foreman@v1
@@ -24,6 +39,10 @@ jobs:
           rm -f roblox.toml
           selene generate-roblox-std
           selene src/
+
+      - name: Test using TestEZ
+        run: |
+          lua test/habitat.lua
 
       - name: Format code using StyLua
         run: |
