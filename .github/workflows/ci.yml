@@ -16,10 +16,10 @@ jobs:
         with:
           submodules: true
 
-      - name: Install Lua 5.1
+      - name: Install LuaJIT
         uses: leafo/gh-actions-lua@v8
         with:
-          luaVersion: "5.1"
+          luaVersion: "luajit"
 
       - name: Install luarocks
         uses: leafo/gh-actions-luarocks@v4
@@ -47,7 +47,7 @@ jobs:
           cp -R ../src Packages/_Index/zxibs_signalservice/signalservice
           echo 'return require(script.Parent._Index["zxibs_signalservice"]["signalservice"])' > Packages/SignalService.lua
           cd ..
-          lua test/lemur.lua
+          luajit -bg test/lemur.lua
 
       - name: Format code using StyLua
         run: |
