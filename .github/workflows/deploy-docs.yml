@@ -18,7 +18,7 @@ jobs:
         id: git-check
         run: |
           git add -AN
-          echo ::set-output name=changed::$(if git diff-index --quiet HEAD -- docs moonwave; then echo "false"; else echo "true"; fi)
+          echo ::set-output name=changed::$(if git diff-index --quiet HEAD~1 -- docs moonwave; then echo "false"; else echo "true"; fi)
 
       - name: Install node for installing moonwave
         if: steps.git-check.outputs.changed == 'true'
