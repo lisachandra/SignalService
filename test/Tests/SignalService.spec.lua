@@ -109,7 +109,7 @@ return function()
                context.addSignal(signalObject)
 
                coroutine.wrap(function()
-                    os.execute("sleep 1")
+                    wait(1)
                     signalObject:Fire("this", "is correct")
                end)()
 
