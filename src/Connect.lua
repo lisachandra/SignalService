@@ -18,10 +18,18 @@ local function Connect(self, callbackFunction)
 		__signal = self,
 		__id = id,
 
-		Connected = true,
-
 		Disconnect = require(script.Parent:WaitForChild("Disconnect")),
 	}, "Connection")
+
+    getmetatable(Connection).__index = function(_self, index)
+        if index == "Connection" then
+            return self.__callbacks[id] ~= nil and self.__connections ~= nil
+        else
+            local message = ("%q (%s) is not a valid member of %s"):format(tostring(key), typeof(key), name)
+
+			error(message, 2)
+        end
+    end
 
 	self.__connections[id] = Connection
 	return Connection
