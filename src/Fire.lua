@@ -12,8 +12,8 @@ local function Fire(self, ...)
 	end
 
 	for index, waiterThread in pairs(self.__waiters) do
-		self.__waiters[index] = nil
 		coroutine.resume(waiterThread, ...)
+		self.__waiters[index] = nil
 	end
 end
 
