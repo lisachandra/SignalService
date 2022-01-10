@@ -8,10 +8,7 @@ local function DisconnectAll(self)
 	end
 
 	for _, connection in pairs(self.__connections) do
-		self.__connections[connection.__id] = nil
-        self.__callbacks[connection.__id] = nil
-
-        setmetatable(connection, {__mode = "kv"})
+		connection:Disconnect()
 	end
 end
 
