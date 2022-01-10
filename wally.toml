@@ -9,4 +9,3 @@ exclude = ["*"]
 include = ["LICENSE.md", "README.md", "src", "src/**", "wally.toml", "default.project.json"]
 
 [dependencies]
-t = "osyrisrblx/t@^3"
