@@ -5,13 +5,9 @@ local SignalService = require(script.Parent)
 local connectCheck = t.tuple(SignalService.isSignal, t.callback)
 
 local function createId(self)
-	local id = tostring(Random.new():NextInteger(0, math.huge))
+	math.randomseed(#self.__connections)
 
-	if self.__callbacks[id] then
-		return createId()
-	else
-		return id
-	end
+    return math.random(1, math.huge)
 end
 
 local function Connect(self, callbackFunction)
