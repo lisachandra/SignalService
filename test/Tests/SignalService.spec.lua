@@ -66,19 +66,14 @@ return function()
      describe("fire", function()
           it("should fire the signal with the correct arguments", function(context)
                local signalObject = SignalService.new()
-               local called = false
                local stringArg
                context.addSignal(signalObject)
 
                signalObject:Connect(function(arg1)
                     stringArg = arg1
-                    called = true
                end)
 
                signalObject:Fire("correct!")
-               repeat
-                   wait()
-               until called
                expect(stringArg).to.be.equal("correct!")
           end)
      end)
