@@ -28,6 +28,12 @@ local function Connect(self, callbackFunction)
         __index = function(_self, index)
             if type(rawget(Connection, index)) == "function" then
                 return function(_self, ...)
+                    local args = table.pack(...)
+                    for index1, argument in pairs(args) do
+                        args[index1] = tostring(argument)
+                    end
+
+                    print(string.format("calling Connection:%s(%s)", tostring(index), table.unpack(args)))
                     return Connection[index](Connection, ...)
                 end
             end
