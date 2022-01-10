@@ -8,6 +8,7 @@ local function createId(self)
 end
 
 local function Connect(self, callbackFunction)
+    -- selene: allow(incorrect_standard_library_use)
     assert(SignalService.isSignal(self) and type(callbackFunction) == "function")
 
 	local id = createId(self)
