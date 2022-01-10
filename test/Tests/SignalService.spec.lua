@@ -108,10 +108,9 @@ return function()
                local signalObject = SignalService.new()
                context.addSignal(signalObject)
 
-               coroutine.wrap(function()
-                    wait(1)
-                    signalObject:Fire("this", "is correct")
-               end)()
+               delay(1, function()
+                   signalObject:Fire("this", "is correct")
+               end)
 
                local string, string2 = signalObject:Wait()
 
