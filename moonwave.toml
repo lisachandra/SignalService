@@ -1,3 +1,5 @@
+gitRepoUrl = "https://github.com/zxibs/SignalService"
+
 title = "SignalService"
 
 classOrder = ["SignalService", "Signal", "Connection"]

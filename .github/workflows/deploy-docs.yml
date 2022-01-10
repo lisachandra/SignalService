@@ -33,7 +33,5 @@ jobs:
       - name: Deploy documentation
         if: steps.git-check.outputs.changed == 'true'
         run: |
-          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
-          git config --global user.email "support+actions@gmail.com"
           git config --global user.name "github-actions"
           moonwave build --code moonwave --publish
