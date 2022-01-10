@@ -115,7 +115,7 @@ return function()
                coroutine.wrap(function()
                     local string, string2 = signalObject:Wait()
                     
-                    print(string, string2)
+                    print("printing wait args, ", string, string2)
                     expect(string).to.be.equal("this")
                     expect(string2).to.be.equal("is correct")
                end)()
