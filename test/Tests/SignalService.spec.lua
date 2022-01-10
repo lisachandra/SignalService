@@ -32,26 +32,27 @@ return function()
     describe("destroy", function()
         it("should destroy the signal and disconnect all connections", function(context)
             local signalObject = SignalService.new()
-            local connection = signalObject:Connect(function() end)
 
-            local connection2 = signalObject:Connect(function() end)
+            local connection = signalObject:Connect(function() end)
+            local connection1 = signalObject:Connect(function() end)
 
             signalObject:Destroy()
-            expect(connection.Connected).to.be.equal(false)
-            expect(connection2.Connected).to.be.equal(false)
+            expect(signalObject.__callbacks[connection1.__id]).to.be.equal(nil)
+            expect(signalObject.__callbacks[connection.__id]).to.be.equal(nil)
             expect(SignalService.isSignal(signalObject)).to.be.equal(false)
         end)
     end)
 
     describe("connect", function()
-        it("should return a connection", function(context)
+        it("should return a connection and add a callback handler", function(context)
             local signalObject = SignalService.new()
             context.addSignal(signalObject)
 
             local connection = signalObject:Connect(function() end)
 
+            expect(signalObject.__callbacks[connection.__id]).to.be.a("function")
+            expect(signalObject.__connections[connection.__id]).to.be.a("table")
             expect(SignalService.isSignal(connection)).to.be.equal(true)
-            expect(connection.Connected).to.be.equal(true)
         end)
     end)
 
@@ -71,14 +72,15 @@ return function()
     end)
 
     describe("disconnect", function()
-        it("should disconnect the connection", function(context)
+        it("should disconnect the connection and remove all references to it", function(context)
             local signalObject = SignalService.new()
             context.addSignal(signalObject)
 
             local connection = signalObject:Connect(function() end)
 
             connection:Disconnect()
-            expect(connection.Connected).to.be.equal(false)
+            expect(signalObject.__callbacks[connection.__id]).to.be.equal(nil)
+            expect(signalObject.__connections[connection.__id]).to.be.equal(nil)
         end)
     end)
 
@@ -89,11 +91,14 @@ return function()
 
             local connection = signalObject:Connect(function() end)
 
-            local connection2 = signalObject:Connect(function() end)
+            local connection1 = signalObject:Connect(function() end)
 
             signalObject:DisconnectAll()
-            expect(connection.Connected).to.be.equal(false)
-            expect(connection2.Connected).to.be.equal(false)
+            expect(signalObject.__callbacks[connection.__id]).to.be.equal(nil)
+            expect(signalObject.__connections[connection.__id]).to.be.equal(nil)
+
+            expect(signalObject.__callbacks[connection1.__id]).to.be.equal(nil)
+            expect(signalObject.__connections[connection1.__id]).to.be.equal(nil)
         end)
     end)
 
