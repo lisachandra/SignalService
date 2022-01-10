@@ -30,9 +30,9 @@ local function Connect(self, callbackFunction)
                 return function(_self, ...)
                     return Connection[index](Connection, ...)
                 end
+            else
+                return Connection[index]
             end
-
-            return Connection[index]
         end,
 
         __newindex = function(_self, index, value)
