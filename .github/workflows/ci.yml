@@ -47,7 +47,7 @@ jobs:
           cp -R ../src Packages/_Index/zxibs_signalservice/signalservice
           echo 'return require(script.Parent._Index["zxibs_signalservice"]["signalservice"])' > Packages/SignalService.lua
           cd ..
-          luajit -bg test/lemur.lua
+          lua test/lemur.lua
 
       - name: Format code using StyLua
         run: |
