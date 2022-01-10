@@ -53,9 +53,17 @@ jobs:
         run: |
           stylua src/
 
+      - name: Check for modified files inside src
+        id: git-check
+        run: |
+          git add -AN
+          echo ::set-output name=modified::$(if git diff --quiet HEAD -- src; then echo "false"; else echo "true"; fi)
+
       - name: Push changes
+        if: steps.git-check.outputs.modified == 'true'
         run: |
           git config --global user.name 'github-actions'
+          git reset --soft HEAD
           git add src/
           git commit -m "Formatted code using StyLua"
           git push
