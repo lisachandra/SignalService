@@ -1,8 +1,5 @@
 local strict = require(script.Parent:WaitForChild("strict"))
-local t = require(script.Parent.Parent:WaitForChild("t")) or require(script.Parent.Parent.Parent.Parent:WaitForChild("t"))
 local SignalService = require(script.Parent)
-
-local connectCheck = t.tuple(SignalService.isSignal, t.callback)
 
 local function createId(self)
 	math.randomseed(#self.__connections)
@@ -11,7 +8,7 @@ local function createId(self)
 end
 
 local function Connect(self, callbackFunction)
-	assert(connectCheck(self, callbackFunction))
+    assert(SignalService.isSignal(self) and type(callbackFunction) == "function")
 
 	local id = createId(self)
 	self.__callbacks[id] = callbackFunction

@@ -109,7 +109,9 @@ return function()
                local signalObject = SignalService.new()
                context.addSignal(signalObject)
 
-               task.delay(2, function()
+               coroutine.wrap(function()
+                    local last = os.time()
+                    while os.time() - last ~= 2 do end
                     signalObject:Fire("this", "is correct")
                end)
 
