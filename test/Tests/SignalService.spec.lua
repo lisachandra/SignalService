@@ -110,10 +110,9 @@ return function()
                context.addSignal(signalObject)
 
                coroutine.wrap(function()
-                    local last = os.time()
-                    while os.time() - last ~= 2 do end
+                    os.execute("sleep 1")
                     signalObject:Fire("this", "is correct")
-               end)
+               end)()
 
                local string, string2 = signalObject:Wait()
 
