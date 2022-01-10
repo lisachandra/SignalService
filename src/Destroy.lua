@@ -3,7 +3,7 @@ local SignalService = require(script.Parent)
 local function ClearTableDescendants(tableToClear)
 	for index, value in pairs(tableToClear) do
 		if type(value) == "table" then
-			setmetatable(tableToClear[index], {__mode = "kv"})
+			setmetatable(tableToClear[index], { __mode = "kv" })
 			ClearTableDescendants(tableToClear[index])
 		end
 	end
@@ -18,7 +18,7 @@ local function Destroy(self)
 
 	self:DisconnectAll()
 	ClearTableDescendants(self)
-	setmetatable(self, {__mode = "kv"})
+	setmetatable(self, { __mode = "kv" })
 end
 
 return Destroy
