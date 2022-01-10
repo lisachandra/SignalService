@@ -69,6 +69,7 @@ return function()
                context.addSignal(signalObject)
 
                signalObject:Connect(function(string)
+                    print("printing connect args, ", string)
                     expect(string).to.be.equal("correct!")
                end)
 
@@ -106,19 +107,28 @@ return function()
      describe("wait", function()
           it("should yield the thread then when fired, resume with the correct arguments", function(context)
                local signalObject = SignalService.new()
+               local args
                context.addSignal(signalObject)
 
                delay(1, function()
                    signalObject:Fire("this", "is correct")
+                   repeat
+                       wait()
+                   until type(args) == "table"
+                   
+                   local string, string2 = args.string, args.string2
+                    
+                   print("printing wait args, ", string, string2)
+                   expect(string).to.be.equal("this")
+                   expect(string2).to.be.equal("is correct")
                end)
 
-               coroutine.wrap(function()
-                    local string, string2 = signalObject:Wait()
-                    
-                    print("printing wait args, ", string, string2)
-                    expect(string).to.be.equal("this")
-                    expect(string2).to.be.equal("is correct")
-               end)()
+               args = coroutine.create(function()
+                   local string, string2 = signalObject:Wait()
+               end)
+            
+               coroutine.resume(args)
+               args = getfenv(args)
           end)
      end)
 
