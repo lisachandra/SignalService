@@ -53,10 +53,12 @@ jobs:
 
       - name: Format code using StyLua
         run: |
-          stylua src/
+          stylua $(find . -name '*.lua')
 
       - name: Check for modified files inside src
         id: git-check
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}
           git add -AN
@@ -64,11 +66,9 @@ jobs:
 
       - name: Push changes
         if: steps.git-check.outputs.modified == 'true'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --global user.name 'github-actions'
           git reset --soft HEAD
-          git add src/
+          git add $(find . -name '*.lua')
           git commit -m "Formatted code using StyLua"
           git push
