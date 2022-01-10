@@ -70,7 +70,6 @@ return function()
 
                signalObject:Connect(function(string)
                     print("printing connect args, ", string)
-                    expect(string).to.be.equal("correct!")
                end)
 
                signalObject:Fire("correct!")
@@ -115,7 +114,7 @@ return function()
                    repeat
                        wait()
                    until type(args) == "table"
-                   
+
                    local string, string2 = args.string, args.string2
                     
                    print("printing wait args, ", string, string2)
