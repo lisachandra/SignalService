@@ -6,8 +6,8 @@ local connectCheck = t.tuple(SignalService.isSignal, t.callback)
 
 local function createId(self)
 	math.randomseed(#self.__connections)
-
-	return math.random(1, math.huge)
+    
+	return math.random(math.huge, 1)
 end
 
 local function Connect(self, callbackFunction)
