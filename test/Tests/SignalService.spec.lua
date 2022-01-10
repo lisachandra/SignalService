@@ -98,8 +98,10 @@ return function()
             local connection2 = signalObject:Connect(function() end)
 
             signalObject:DisconnectAll()
+            print(connection.Connected)
             expect(connection.Connected).to.be.equal(false)
             expect(connection2.Connected).to.be.equal(false)
+            print(connection.Connected)
         end)
     end)
 
