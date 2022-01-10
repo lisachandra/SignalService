@@ -26,7 +26,7 @@ local function Connect(self, callbackFunction)
     function newMt.__index(_self, index)
         if index == "Connected" then
             local isConnected = false
-            if self.__callbacks[id] and self.__connections[id] then
+            if Connection.__signal.__callbacks[id] and Connection.__signal.__connections[id] then
                 isConnected = true
             end
 
