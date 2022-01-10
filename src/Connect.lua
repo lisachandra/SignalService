@@ -4,7 +4,7 @@ local SignalService = require(script.Parent)
 local function createId(self)
 	math.randomseed(#self.__connections)
     
-	return math.random(math.huge, 1)
+	return tostring(math.random(math.huge, 1))
 end
 
 local function Connect(self, callbackFunction)
