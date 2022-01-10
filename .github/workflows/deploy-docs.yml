@@ -32,4 +32,6 @@ jobs:
       
       - name: Deploy documentation
         if: steps.git-check.outputs.changed == 'true'
-        run: moonwave build --code moonwave --publish
+        run: |
+          git config --global user.name "github-actions"
+          moonwave build --code moonwave --publish
