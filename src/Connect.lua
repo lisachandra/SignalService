@@ -24,9 +24,14 @@ local function Connect(self, callbackFunction)
     local newMt = getmetatable(Connection)
 
     function newMt.__index(_self, index)
-        print(index)
         if index == "Connected" then
-            return self.__callbacks[id] ~= nil and self.__connections ~= nil
+            local isConnected = false
+            if self.__callbacks[id] and self.__connections[id] then
+                isConnected = true
+            end
+
+            print(isConnected)
+            return isConnected
         else
             local message = ("%q (%s) is not a valid member of %s"):format(tostring(index), typeof(index), tostring(Connection))
 
