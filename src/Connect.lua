@@ -26,14 +26,8 @@ local function Connect(self, callbackFunction)
 	Connection = strict(Connection, "Connection")
 	self.__connections[id] = setmetatable({}, {
         __index = function(_self, index)
-            if type(rawget(Connection, index)) == "function" then
+            if type(Connection[index]) == "function" then
                 return function(_self, ...)
-                    local args = ... and {...} or {""}
-                    for index1, argument in pairs(args) do
-                        args[index1] = tostring(argument)
-                    end
-
-                    print(string.format("calling Connection:%s(%s)", tostring(index), unpack(args)))
                     return Connection[index](Connection, ...)
                 end
             end
