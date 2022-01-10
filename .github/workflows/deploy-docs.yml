@@ -32,6 +32,8 @@ jobs:
       
       - name: Deploy documentation
         if: steps.git-check.outputs.changed == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git 
           git config --global user.email "support+actions@github.com"
