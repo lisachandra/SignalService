@@ -112,9 +112,10 @@ return function()
                    signalObject:Fire("this", "is correct")
                end)
 
-               local argsCoroutine = coroutine.wrap(function()
+               coroutine.wrap(function()
                     local string, string2 = signalObject:Wait()
                     
+                    print(string, string2)
                     expect(string).to.be.equal("this")
                     expect(string2).to.be.equal("is correct")
                end)()
