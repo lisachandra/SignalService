@@ -28,7 +28,7 @@ local function Connect(self, callbackFunction)
         __index = function(_self, index)
             if type(rawget(Connection, index)) == "function" then
                 return function(_self, ...)
-                    local args = {...}
+                    local args = ... and {...} or {""}
                     for index1, argument in pairs(args) do
                         args[index1] = tostring(argument)
                     end
