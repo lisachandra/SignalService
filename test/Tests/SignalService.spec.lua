@@ -7,7 +7,7 @@ return function()
         it("should be true", function()
             local signalObject = setmetatable({}, {
                 __tostring = function()
-                        return "Signal"
+                    return "Signal"
                 end
             })
 
@@ -32,13 +32,9 @@ return function()
     describe("destroy", function()
         it("should destroy the signal and disconnect all connections", function(context)
             local signalObject = SignalService.new()
-            local connection = signalObject:Connect(function()
-                
-            end)
+            local connection = signalObject:Connect(function() end)
 
-            local connection2 = signalObject:Connect(function()
-                
-            end)
+            local connection2 = signalObject:Connect(function() end)
 
             signalObject:Destroy()
             expect(connection.Connected).to.be.equal(false)
@@ -52,9 +48,7 @@ return function()
             local signalObject = SignalService.new()
             context.addSignal(signalObject)
 
-            local connection = signalObject:Connect(function()
-                
-            end)
+            local connection = signalObject:Connect(function() end)
 
             expect(SignalService.isSignal(connection)).to.be.equal(true)
             expect(connection.Connected).to.be.equal(true)
@@ -98,8 +92,6 @@ return function()
             local connection2 = signalObject:Connect(function() end)
 
             signalObject:DisconnectAll()
-            print(connection.Connected)
-            print(connection2.Connected)
             expect(connection.Connected).to.be.equal(false)
             expect(connection2.Connected).to.be.equal(false)
         end)
@@ -128,9 +120,7 @@ return function()
             context.addSignal(signalObject)
 
             signalObject:onDispatch({
-                    NewDispatch = function()
-                        
-                    end
+                NewDispatch = function() end
             })
 
             expect(signalObject.__dispatchHandler.NewDispatch).to.be.a("function")
