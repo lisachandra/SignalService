@@ -68,7 +68,6 @@ return function()
                local signalObject = SignalService.new()
                context.addSignal(signalObject)
 
-
                signalObject:Connect(function(string)
                     expect(string).to.be.equal("correct!")
                end)
