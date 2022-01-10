@@ -43,6 +43,8 @@ jobs:
           cd test
           echo "$DEPENDENCIES" >> wally.toml
           wally install
+          mkdir Packages || echo 'Packages already exists!'
+          mkdir Packages/_Index || echo 'Packages/_Index already exists!'
           mkdir Packages/_Index/zxibs_signalservice
           cp -R ../src Packages/_Index/zxibs_signalservice/signalservice
           echo 'return require(script.Parent._Index["zxibs_signalservice"]["signalservice"])' > Packages/SignalService.lua
