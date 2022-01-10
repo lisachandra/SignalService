@@ -32,8 +32,6 @@ return function()
     describe("destroy", function()
         it("should destroy the signal and disconnect all connections", function(context)
             local signalObject = SignalService.new()
-            context.addSignal(signalObject)
-
             local connection = signalObject:Connect(function()
                 
             end)
@@ -100,6 +98,7 @@ return function()
             local connection2 = signalObject:Connect(function() end)
 
             signalObject:DisconnectAll()
+            print(connection.Connected)
             expect(connection.Connected).to.be.equal(false)
             expect(connection2.Connected).to.be.equal(false)
         end)
