@@ -75,7 +75,7 @@ function Signal:Wait() end
     ```lua
     local Connection = Signal:Connect(function(arg1, boolean, integer)
         print(arg1, tostring(boolean), tostring(integer))
-        -- Outputs `Argument1 true 3`
+        -- Prints out `Argument1 true 3`
     end)
 
     Signal:Fire("Argument1", true, 3)
