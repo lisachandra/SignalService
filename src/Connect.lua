@@ -21,7 +21,8 @@ local function Connect(self, callbackFunction)
 		Disconnect = require(script.Parent:WaitForChild("Disconnect")),
 	}, "Connection")
 
-    getmetatable(Connection).__index = function(_self, index)
+    local newMt = getmetatable(Connection)
+    newMt.__index = function(_self, index)
         if index == "Connection" then
             return self.__callbacks[id] ~= nil and self.__connections ~= nil
         else
@@ -30,6 +31,8 @@ local function Connect(self, callbackFunction)
 			error(message, 2)
         end
     end
+
+    setmetatable(Connection, newMt)
 
 	self.__connections[id] = Connection
 	return Connection
