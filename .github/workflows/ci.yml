@@ -53,7 +53,7 @@ jobs:
 
       - name: Format code using StyLua
         run: |
-          stylua $(find . -name '*.lua')
+          stylua src/
 
       - name: Check for modified files inside src
         id: git-check
@@ -69,6 +69,6 @@ jobs:
         run: |
           git config --global user.name 'github-actions'
           git reset --soft HEAD
-          git add $(find . -name '*.lua')
+          git add src/
           git commit -m "Formatted code using StyLua"
           git push
