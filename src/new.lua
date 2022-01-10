@@ -1,7 +1,7 @@
 local strict = require(script.Parent:WaitForChild("strict"))
 
 local function new()
-	local Signal = {
+	local Signal = strict({
 		__connections = {},
 		__callbacks = {},
 		__waiters = {},
@@ -13,9 +13,9 @@ local function new()
 		Dispatch = require(script.Parent:WaitForChild("Dispatch")),
 		onDispatch = require(script.Parent:WaitForChild("onDispatch")),
 		DisconnectAll = require(script.Parent:WaitForChild("DisconnectAll")),
-	}
+	}, "Signal")
 
-	return strict(Signal, "Signal")
+	return Signal
 end
 
 return new

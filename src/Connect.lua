@@ -14,32 +14,16 @@ local function Connect(self, callbackFunction)
 	local id = createId(self)
 	self.__callbacks[id] = callbackFunction
 
-	local Connection = {
+	local Connection = strict({
 		__signal = self,
 		__id = id,
 
 		Connected = true,
 
 		Disconnect = require(script.Parent:WaitForChild("Disconnect")),
-	}
+	}, "Connection")
 
-	Connection = strict(Connection, "Connection")
-	self.__connections[id] = setmetatable({}, {
-        __index = function(_self, index)
-            if type(Connection[index]) == "function" then
-                return function(_self, ...)
-                    return Connection[index](Connection, ...)
-                end
-            else
-                return Connection[index]
-            end
-        end,
-
-        __newindex = function(_self, index, value)
-            Connection[index] = value
-        end
-    })
-
+	self.__connections[id] = Connection
 	return Connection
 end
 
