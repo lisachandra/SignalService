@@ -25,7 +25,7 @@ local function Connect(self, callbackFunction)
         if index == "Connection" then
             return self.__callbacks[id] ~= nil and self.__connections ~= nil
         else
-            local message = ("%q (%s) is not a valid member of %s"):format(tostring(key), typeof(key), name)
+            local message = ("%q (%s) is not a valid member of %s"):format(tostring(index), typeof(index), tostring(Connection))
 
 			error(message, 2)
         end
