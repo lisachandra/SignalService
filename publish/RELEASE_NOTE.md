@@ -16,7 +16,7 @@
 ## [Wally](https://github.com/UpliftGames/wally)
 
 - Run wally init in your terminal (you don't have to do this if you already have a wally.toml file in your folder)
-- Add `SignalService = "zxibs/signalservice@^0"` to your dependencies list in your wally.toml file
+- Add `SignalService = "zxibs/signalservice@version"` to your dependencies list in your wally.toml file
 - Run wally install in your terminal
 - Use [Rojo](https://rojo.space/) to sync the files into a place
 

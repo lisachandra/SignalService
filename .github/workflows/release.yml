@@ -63,6 +63,7 @@ jobs:
           cd publish
           sed -i 's|(rbxm)|(https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/SignalService.rbxm)|' RELEASE_NOTE.md
           sed -i 's|(zip)|(https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/SignalService.zip)|' RELEASE_NOTE.md
+          sed -i 's|version|${{ github.ref_name }}|' RELEASE_NOTE.md
           cat CHANGES.md >> RELEASE_NOTE.md
           cd ..
       
