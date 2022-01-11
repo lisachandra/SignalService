@@ -44,7 +44,7 @@ local Signal = {}
     Signal:Fire("Argument1", true, 3) -- arguments can be anything you want
     ```
 
-    @param ... any
+    @param ...any
 ]=]
 function Signal:Fire(...) end
 
@@ -59,7 +59,7 @@ function Signal:Fire(...) end
     local stringArgument = Signal:Wait() -- returns "it waited!" 
     ```
 
-    @return ...
+    @return ...any
     @yields
 ]=]
 function Signal:Wait() end
@@ -111,7 +111,7 @@ function Signal:Destroy() end
     ```
 
     @param action {type: string}
-    @return any
+    @return ...any
 ]=]
 function Signal:Dispatch(action) end
 
