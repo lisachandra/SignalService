@@ -40,7 +40,7 @@ jobs:
           git config --global alias.changelog "log --pretty=format:'- %s by @%an (%h)' --abbrev-commit"
           CHANGES='\n## v'"$VERSION"' - '"$DATE"'\n### Added\n\n'"$(git changelog --grep="ADDED:" $LAST_TAG..HEAD -- src/*.lua)"'\n\n### Changed\n\n'"$(git changelog --grep="CHANGED:" $LAST_TAG..HEAD -- src/*.lua)"'\n\n### Removed\n\n'"$(git changelog --grep="REMOVED:" $LAST_TAG..HEAD -- src/*.lua)"'\n\n### Fixed\n\n'"$(git changelog --grep="FIXED:" $LAST_TAG..HEAD -- src/*.lua)"'\n'
           CHANGES_OUTPUT=$(echo -e "$CHANGES")
-          sed -i -e "6s|.*.*|$CHANGES_OUTPUT|" changelog.md
+          sed -i '6s|.*.*|'"$CHANGES_OUTPUT"'|' changelog.md
 
       - name: Create tag for release
         env:
