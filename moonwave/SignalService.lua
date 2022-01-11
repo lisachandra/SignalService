@@ -44,7 +44,7 @@ local Signal = {}
     Signal:Fire("Argument1", true, 3) -- arguments can be anything you want
     ```
 
-    @param ...any
+    @param ... any
 ]=]
 function Signal:Fire(...) end
 
