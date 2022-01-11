@@ -45,14 +45,14 @@ jobs:
           CHANGES="\n## v$VERSION - $DATE\n### Added\n\n$ADDED\n\n### Changed\n\n$CHANGED\n\n### Removed\n\n$REMOVED\n\n### Fixed\n\n$FIXED\n"
           echo '' > CHANGES.md
           awk 'NR==6 {$0="$CHANGES"} 1' CHANGES.md > changelog.md
-          cat CHANGES.md
+          cat changelog.md
 
       - name: Create tag for release
         env:
           VERSION: ${{ github.event.inputs.version }}
         run: |
           git config --global user.name 'github-actions'
-          git tag -a $VERSION -m "New release for v$VERSION"
+          git tag -a -m "New release for v$VERSION" $VERSION
 
       - name: Push changes
         env:
@@ -60,4 +60,4 @@ jobs:
         run: |
           git add changelog.md wally.toml
           git commit -m "Bumped version to $VERSION and added a changelog for it"
-          git push --tags
+          git push && git push --tags
