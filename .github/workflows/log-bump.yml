@@ -43,20 +43,21 @@ jobs:
           REMOVED=$(git changelog --grep="REMOVED:" $LAST_TAG..HEAD -- src/*.lua)
           FIXED=$(git changelog --grep="FIXED:" $LAST_TAG..HEAD -- src/*.lua)
           CHANGES="\n## v$VERSION - $DATE\n### Added\n\n$ADDED\n\n### Changed\n\n$CHANGED\n\n### Removed\n\n$REMOVED\n\n### Fixed\n\n$FIXED\n"
-          echo -e "$CHANGES"
           echo '' > CHANGES.md
           awk 'NR==6 {$0="$CHANGES"} 1' CHANGES.md > changelog.md
+          cat CHANGES.md
 
       - name: Create tag for release
         env:
           VERSION: ${{ github.event.inputs.version }}
-        run: git tag -a $VERSION -m "New release for v$VERSION"
+        run: |
+          git config --global user.name 'github-actions'
+          git tag -a $VERSION -m "New release for v$VERSION"
 
       - name: Push changes
         env:
           VERSION: ${{ github.event.inputs.version }}
         run: |
-          git config --global user.name 'github-actions'
           git add changelog.md wally.toml
           git commit -m "Bumped version to $VERSION and added a changelog for it"
           git push --tags
