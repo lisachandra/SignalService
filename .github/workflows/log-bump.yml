@@ -38,8 +38,8 @@ jobs:
           LAST_TAG=$(git describe --tags --abbrev=0)
           DATE=$(date +%F)
           git config --global alias.changelog "log --pretty=format:'- %s by @%an (%h)' --abbrev-commit"
-          CHANGES='\n## v'"$VERSION"' - '"$DATE"'\n### Added\n\n'"$(git changelog --grep="ADDED:" $LAST_TAG..HEAD -- src/*.lua)"'\n\n### Changed\n\n'"$(git changelog --grep="CHANGED:" $LAST_TAG..HEAD -- src/*.lua)"'\n\n### Removed\n\n'"$(git changelog --grep="REMOVED:" $LAST_TAG..HEAD -- src/*.lua)"'\n\n### Fixed\n\n'"$(git changelog --grep="FIXED:" $LAST_TAG..HEAD -- src/*.lua)"'\n'
-          sed -i '6s~.*.*~'"$CHANGES"'~' changelog.md
+          CHANGES="\n## v$VERSION - $DATE\n### Added\n\n$(git changelog --grep="ADDED:" $LAST_TAG..HEAD -- src/*.lua)\n\n### Changed\n\n$(git changelog --grep="CHANGED:" $LAST_TAG..HEAD -- src/*.lua)\n\n### Removed\n\n$(git changelog --grep="REMOVED:" $LAST_TAG..HEAD -- src/*.lua)\n\n### Fixed\n\n$(git changelog --grep="FIXED:" $LAST_TAG..HEAD -- src/*.lua)\n"
+          sed -i "6s~.*.*~$CHANGES~" changelog.md
 
       - name: Create tag for release
         env:
