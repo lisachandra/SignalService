@@ -34,10 +34,11 @@ jobs:
         shell: bash
         env:
           VERSION: ${{ github.event.inputs.version }}
+          REPOSITORY: ${{ github.repository }}
         run: |
           LAST_TAG=$(git describe --tags --abbrev=0)
           DATE=$(date +%F)
-          git config --global alias.changelog "log --pretty=format:'- %s by @%an (%H)' --abbrev-commit"
+          git config --global alias.changelog "log --pretty=format:'- %s by @%an ([%h](https://github.com/${REPOSITORY}/commit/%H))' --abbrev-commit"
           ADDED=$(git changelog --grep="ADDED:" $LAST_TAG..HEAD -- src/*.lua)
           CHANGED=$(git changelog --grep="CHANGED:" $LAST_TAG..HEAD -- src/*.lua)
           REMOVED=$(git changelog --grep="REMOVED:" $LAST_TAG..HEAD -- src/*.lua)
