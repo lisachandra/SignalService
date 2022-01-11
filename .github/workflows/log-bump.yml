@@ -43,7 +43,7 @@ jobs:
           REMOVED=$(git changelog --grep="REMOVED:" $LAST_TAG..HEAD -- src/*.lua)
           FIXED=$(git changelog --grep="FIXED:" $LAST_TAG..HEAD -- src/*.lua)
           CHANGES="\n## v$VERSION - $DATE\n### Added\n\n$ADDED\n\n### Changed\n\n$CHANGED\n\n### Removed\n\n$REMOVED\n\n### Fixed\n\n$FIXED\n"
-          awk -v A="$CHANGES" 'NR==6 {$0="A"} 1' changelog.md > newChangelog.md
+          awk -v A="$CHANGES" '{ if (NR == 6) print A; else print $0}' changelog.md > newChangelog.md
           mv newChangelog.md changelog.md
           cat changelog.md
 
