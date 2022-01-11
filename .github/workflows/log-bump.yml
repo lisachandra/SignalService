@@ -43,8 +43,8 @@ jobs:
           REMOVED=$(git changelog --grep="REMOVED:" $LAST_TAG..HEAD -- src/*.lua)
           FIXED=$(git changelog --grep="FIXED:" $LAST_TAG..HEAD -- src/*.lua)
           CHANGES="\n## v$VERSION - $DATE\n### Added\n\n$ADDED\n\n### Changed\n\n$CHANGED\n\n### Removed\n\n$REMOVED\n\n### Fixed\n\n$FIXED\n"
-          echo '' > CHANGES.md
-          awk 'NR==6 {$0="$CHANGES"} 1' CHANGES.md > changelog.md
+          awk 'NR==6 {$0="$CHANGES"} 1' changelog.md > newChangelog.md
+          mv newChangelog.md changelog.md
           cat changelog.md
 
       - name: Create tag for release
