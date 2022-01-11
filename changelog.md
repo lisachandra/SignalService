@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).  
 
-## v0.4.4 - 2022-01-11
+## 0.4.4 - 2022-01-11
 ### Added
 
 - ADDED: an or statement when requiring a dependency to avoid errors by @lisachandra ([20bcb1c](https://github.com/zxibs/SignalService/commit/20bcb1c1641b3f27aa39c57278d6137eab81e39f))
