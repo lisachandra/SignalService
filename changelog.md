@@ -4,24 +4,6 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).  
 
-## v0.4.4 - 2022-01-11
-### Added
-
-- ADDED: an or statement when requiring a dependency to avoid errors by @lisachandra (20bcb1c)
-
-### Changed
-
-- CHANGED: Removed t typechecking and replaced it with normal lua assert type checking by @lisachandra (57a5618)
-- CHANGED: ID generation to `math.random(1, math.huge)` with `math.randomseed(#self.__connections)` by @lisachandra (1c0dea2)
-
-### Removed
-
-
-
-### Fixed
-
-
-
 ## 0.4.3 - 2022-01-06
 ### Added
 
