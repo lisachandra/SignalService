@@ -44,7 +44,8 @@ jobs:
           FIXED=$(git changelog --grep="FIXED:" $LAST_TAG..HEAD -- src/*.lua)
           CHANGES="\n## v$VERSION - $DATE\n### Added\n\n$ADDED\n\n### Changed\n\n$CHANGED\n\n### Removed\n\n$REMOVED\n\n### Fixed\n\n$FIXED\n"
           echo -e "$CHANGES"
-          awk 'NR==4 {$0="$CHANGES"} 1' CHANGES.md > changelog.md
+          cat CHANGES.md
+          awk 'NR==6 {$0="$CHANGES"} 1' CHANGES.md > changelog.md
 
       - name: Create tag for release
         env:
