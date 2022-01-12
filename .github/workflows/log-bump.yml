@@ -39,7 +39,6 @@ jobs:
           chmod +x publish/create_changelog.bash
           ./publish/create_changelog.bash $VERSION $REPOSITORY
           CHANGES=$(cat CHANGES.md)
-          cat CHANGES.md
           awk -v A="$CHANGES" '{ if (NR == 6) print A; else print $0}' CHANGELOG.md > newCHANGELOG.md
           mv newCHANGELOG.md CHANGELOG.md
 
