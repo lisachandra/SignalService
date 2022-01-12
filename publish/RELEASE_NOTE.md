@@ -20,4 +20,4 @@
 - Run wally install in your terminal
 - Use [Rojo](https://rojo.space/) to sync the files into a place
 
-# [Changelog](/changelog.md)
+# [Changelog](/CHANGELOG.md)

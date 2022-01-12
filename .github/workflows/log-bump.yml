@@ -36,16 +36,12 @@ jobs:
           VERSION: ${{ github.event.inputs.version }}
           REPOSITORY: ${{ github.repository }}
         run: |
-          LAST_TAG=$(git describe --tags --abbrev=0)
-          DATE=$(date +%F)
-          git config --global alias.changelog "log --pretty=format:'- %s by @%an ([%h](https://github.com/${REPOSITORY}/commit/%H))' --abbrev-commit"
-          ADDED=$(git changelog --grep="ADDED:" $LAST_TAG..HEAD -- src/*.lua)
-          CHANGED=$(git changelog --grep="CHANGED:" $LAST_TAG..HEAD -- src/*.lua)
-          REMOVED=$(git changelog --grep="REMOVED:" $LAST_TAG..HEAD -- src/*.lua)
-          FIXED=$(git changelog --grep="FIXED:" $LAST_TAG..HEAD -- src/*.lua)
-          CHANGES="\n## $VERSION - $DATE\n### Added\n\n$ADDED\n\n### Changed\n\n$CHANGED\n\n### Removed\n\n$REMOVED\n\n### Fixed\n\n$FIXED\n"
-          awk -v A="$CHANGES" '{ if (NR == 6) print A; else print $0}' changelog.md > newChangelog.md
-          mv newChangelog.md changelog.md
+          chmod +x publish/create_changelog.bash
+          ./publish/create_changelog.bash $VERSION $REPOSITORY
+          CHANGES=$(cat CHANGES.md)
+          cat CHANGES.md
+          awk -v A="$CHANGES" '{ if (NR == 6) print A; else print $0}' CHANGELOG.md > newCHANGELOG.md
+          mv newCHANGELOG.md CHANGELOG.md
 
       - name: Create tag for release
         env:
@@ -58,6 +54,6 @@ jobs:
         env:
           VERSION: ${{ github.event.inputs.version }}
         run: |
-          git add changelog.md wally.toml
+          git add CHANGELOG.md wally.toml
           git commit -m "Bumped version to $VERSION and added a changelog for it"
           git push && git push --tags
