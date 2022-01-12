@@ -25,7 +25,7 @@ CHANGES+=(
 echo -e "\n# $VERSION - $DATE" > CHANGES.md
 
 for key in ${!CHANGES[@]}; do
-    if [ -z "${CHANGES[${key}]}" ]; then
+    if [ ! -z "${CHANGES[${key}]}" ]; then
         echo -e "# $key\n\n${CHANGES[${key}]}\n" >> CHANGES.md
     fi
 done
