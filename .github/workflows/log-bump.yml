@@ -42,17 +42,10 @@ jobs:
           awk -v A="$CHANGES" '{ if (NR == 6) print A; else print $0}' CHANGELOG.md > newCHANGELOG.md
           mv newCHANGELOG.md CHANGELOG.md
 
-      - name: Create tag for release
-        env:
-          VERSION: ${{ github.event.inputs.version }}
-        run: |
-          git config --global user.name 'github-actions'
-          git tag -a -m "New release for v$VERSION" $VERSION
-
       - name: Push changes
         env:
           VERSION: ${{ github.event.inputs.version }}
         run: |
           git add CHANGELOG.md wally.toml
           git commit -m "Bumped version to $VERSION and added a changelog for it"
-          git push && git push --tags
+          git push
