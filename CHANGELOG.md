@@ -4,14 +4,6 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). 
 
-## 0.4.4 - 2022-01-12
-### Added
-
-- ADDED: an or statement when requiring a dependency to avoid errors by @lisachandra ([20bcb1c](https://github.com/zxibs/SignalService/commit/20bcb1c1641b3f27aa39c57278d6137eab81e39f))
-### Changed
-
-- CHANGED: Removed t typechecking and replaced it with normal lua assert type checking by @lisachandra ([57a5618](https://github.com/zxibs/SignalService/commit/57a56187ddb7f09fb458ca3cd27abb8f92130fa6))
-- CHANGED: ID generation to `math.random(1, math.huge)` with `math.randomseed(#self.__connections)` by @lisachandra ([1c0dea2](https://github.com/zxibs/SignalService/commit/1c0dea2516e4338d8a75baf2c4730bb5b4f31958))
 ## 0.4.3 - 2022-01-06
 ### Added
 
