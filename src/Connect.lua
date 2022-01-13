@@ -8,15 +8,16 @@ local function createId(self)
 end
 
 local function connectCheck(self, callbackFunction)
-    if SignalService.isSignal(self) then
-        if type(callbackFunction) ~= "function" then
-            return false, "bad argument #2 (function expected, got " .. type(callbackFunction) .. ")" .. debug.traceback()
-        end
+	if SignalService.isSignal(self) then
+		if type(callbackFunction) ~= "function" then
+			return false,
+				"bad argument #2 (function expected, got " .. type(callbackFunction) .. ")" .. debug.traceback()
+		end
 
-        return true
-    else
-        return false, "Expected `:` not `.` while calling function Connect" .. debug.traceback()
-    end
+		return true
+	else
+		return false, "Expected `:` not `.` while calling function Connect" .. debug.traceback()
+	end
 end
 
 local function Connect(self, callbackFunction)
