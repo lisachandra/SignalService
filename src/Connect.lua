@@ -7,9 +7,20 @@ local function createId(self)
 	return tostring(math.random(math.huge, 1))
 end
 
+local function connectCheck(self, callbackFunction)
+    if SignalService.isSignal(self) then
+        if type(callbackFunction) ~= "function" then
+            return false, "bad argument #2 (function expected, got " .. type(callbackFunction) .. ")" .. debug.traceback()
+        end
+
+        return true
+    else
+        return false, "Expected `:` not `.` while calling function Connect" .. debug.traceback()
+    end
+end
+
 local function Connect(self, callbackFunction)
-	-- selene: allow(incorrect_standard_library_use)
-	assert(SignalService.isSignal(self) and type(callbackFunction) == "function")
+	assert(connectCheck(self, callbackFunction))
 
 	local id = createId(self)
 	self.__callbacks[id] = callbackFunction
