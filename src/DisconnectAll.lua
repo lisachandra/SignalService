@@ -2,7 +2,7 @@ local SignalService = require(script.Parent)
 
 local function DisconnectAll(self)
 	if not SignalService.isSignal(self) then
-		local message = "Expected `:` not `.` while calling function Fire"
+		local message = "Expected `:` not `.` while calling function DisconnectAll"
 
 		error(message, 2)
 	end

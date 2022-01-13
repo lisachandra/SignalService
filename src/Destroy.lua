@@ -11,7 +11,7 @@ end
 
 local function Destroy(self)
 	if not SignalService.isSignal(self) then
-		local message = "Expected `:` not `.` while calling function Fire"
+		local message = "Expected `:` not `.` while calling function Destroy"
 
 		error(message, 2)
 	end
