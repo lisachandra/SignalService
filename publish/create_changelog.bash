@@ -8,10 +8,10 @@ REPOSITORY=$2
 
 git config --global alias.changelog "log --pretty=format:'- %s by @%an ([%h](https://github.com/${REPOSITORY}/commit/%H))' --abbrev-commit"
 
-ADDED=$(git changelog --grep="ADDED:" $LAST_TAG..HEAD -- src/*.lua)
-FIXED=$(git changelog --grep="FIXED:" $LAST_TAG..HEAD -- src/*.lua)
-CHANGED=$(git changelog --grep="CHANGED:" $LAST_TAG..HEAD -- src/*.lua)
-REMOVED=$(git changelog --grep="REMOVED:" $LAST_TAG..HEAD -- src/*.lua)
+ADDED=$(git changelog --grep="ADDED:" $LAST_TAG..HEAD)
+FIXED=$(git changelog --grep="FIXED:" $LAST_TAG..HEAD)
+CHANGED=$(git changelog --grep="CHANGED:" $LAST_TAG..HEAD)
+REMOVED=$(git changelog --grep="REMOVED:" $LAST_TAG..HEAD)
 
 declare -A CHANGES
 
