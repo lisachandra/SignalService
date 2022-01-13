@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). 
 
+## 0.4.5 - 2022-01-13
+### Added
+
+- ADDED: Better error messages for easier debugging by @lisachandra ([23ae3c4](https://github.com/zxibs/SignalService/commit/23ae3c433a18a2e077a4a9ce50c650367f5aeb8f))
 ## 0.4.4 - 2022-01-12
 ### Added
 
