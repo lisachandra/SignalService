@@ -7,25 +7,43 @@ on:
   workflow_dispatch:
 
 jobs:
-  ci:
-    name: CI
+  tests:
+    name: Tests
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install required tools
+        uses: Roblox/setup-foreman@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build place file
+        shell: bash
+        run: |
+          chmod +x test/build.bash
+          ./test/build.bash
+
+      - name: Add RBXID to the Windows registry
+        run: REG ADD HKCU\Software\RobloxStudioBrowser\roblox.com /t REG_SZ /v .RBXID /d "${{ secrets.RBXID }}"
+
+      - name: Install Roblox Studio
+        uses: OrbitalOwen/roblox-win-installer-action@1.1
+          with:
+            cookie: ${{ secrets.ROBLOSECURITY }}
+            token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run tests
+        run: run-in-roblox --place test/signalservice-test.rbxlx --script test/runner.server.lua
+
+  code-quality:
+    needs: tests
+    name: Code quality
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v1
-        with:
-          submodules: true
-
-      - name: Install LuaJIT
-        uses: leafo/gh-actions-lua@v8
-        with:
-          luaVersion: "luajit"
-
-      - name: Install luarocks
-        uses: leafo/gh-actions-luarocks@v4
-
-      - name: Install dependencies for testing
-        run: luarocks install luafilesystem
 
       - name: Install required tools
         uses: Roblox/setup-foreman@v1
@@ -35,21 +53,6 @@ jobs:
       - name: Lint using Selene
         run: |
           selene src/
-
-      - name: Test using TestEZ
-        shell: bash
-        run: |
-          DEPENDENCIES=$(awk '$0 == "[dependencies]" {i=1;next};i && i >= 0' wally.toml)
-          cd test
-          echo "$DEPENDENCIES" >> wally.toml
-          wally install
-          mkdir Packages || echo 'Packages already exists!'
-          mkdir Packages/_Index || echo 'Packages/_Index already exists!'
-          mkdir Packages/_Index/zxibs_signalservice
-          cp -R ../src Packages/_Index/zxibs_signalservice/signalservice
-          echo 'return require(script.Parent._Index["zxibs_signalservice"]["signalservice"])' > Packages/SignalService.lua
-          cd ..
-          lua test/lemur.lua
 
       - name: Format code using StyLua
         run: |

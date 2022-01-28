@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+awk '$0 == "[dependencies]" {i=1;next};i && i >= 0' wally.toml > DEPENDENCIES.toml
+
+cd test
+
+cat DEPENDENCIES.toml > wally.toml
+wally install
+
+cd ..
+
+if [[ ! -d test/Packages ]]; then
+    mkdir test/Packages
+    mkdir test/Packages/_Index
+fi
+
+mkdir test/Packages/_Index/zxibs_signalservice
+
+if [[ -s ../DEPENDENCIES.toml ]]; then
+    declare -A DEPENDENCIES
+
+
+fi
+
+cp -R src test/Packages/_Index/zxibs_signalservice/signalservice
+echo 'return require(script.Parent._Index["zxibs_signalservice"]["signalservice"])' > test/Packages/SignalService.lua
+
+rojo build test/test.project.json -o test/signalservice-test.rbxlx
