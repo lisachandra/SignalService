@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-awk '$0 == "[dependencies]" {i=1;next};i && i >= 0' wally.toml > DEPENDENCIES.toml
+DEPENDENCIES=$(awk '$0 == "[dependencies]" {i=1;next};i && i >= 0' wally.toml)
 
 cd test
 
-cat DEPENDENCIES.toml > wally.toml
+echo "$DEPENDENCIES" > wally.toml
 wally install
 
 cd ..
