@@ -30,9 +30,9 @@ jobs:
 
       - name: Install Roblox Studio
         uses: OrbitalOwen/roblox-win-installer-action@1.1
-          with:
-            cookie: ${{ secrets.ROBLOSECURITY }}
-            token: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          cookie: ${{ secrets.ROBLOSECURITY }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Run tests
         run: run-in-roblox --place test/signalservice-test.rbxlx --script test/runner.server.lua
