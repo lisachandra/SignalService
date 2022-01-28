@@ -7,8 +7,8 @@ local function Disconnect(self)
 		error(message, 2)
 	end
 
-	self.__signal.__connections[self.__id] = nil
-	self.__signal.__callbacks[self.__id] = nil
+	self._signal._connections[self._key] = nil
+	self._signal._callbacks[self._key] = nil
 
 	setmetatable(self, { __mode = "kv" })
 end

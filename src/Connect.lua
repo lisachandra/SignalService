@@ -1,11 +1,7 @@
 local strict = require(script.Parent:WaitForChild("strict"))
+
+local Symbol = require(script.Parent:WaitForChild("Symbol"))
 local SignalService = require(script.Parent)
-
-local function createId(self)
-	math.randomseed(#self.__connections)
-
-	return tostring(math.random(math.huge, 1))
-end
 
 local function connectCheck(self, callbackFunction)
 	if SignalService.isSignal(self) then
@@ -23,17 +19,17 @@ end
 local function Connect(self, callbackFunction)
 	assert(connectCheck(self, callbackFunction))
 
-	local id = createId(self)
-	self.__callbacks[id] = callbackFunction
+	local key = Symbol.named("Connection")
+	self._callbacks[key] = callbackFunction
 
 	local Connection = strict({
-		__signal = self,
-		__id = id,
+		_signal = self,
+		_key = key,
 
 		Disconnect = require(script.Parent:WaitForChild("Disconnect")),
 	}, "Connection")
 
-	self.__connections[id] = Connection
+	self._connections[key] = Connection
 	return Connection
 end
 

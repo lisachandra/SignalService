@@ -7,7 +7,7 @@ local function DisconnectAll(self)
 		error(message, 2)
 	end
 
-	for _, connection in pairs(self.__connections) do
+	for _, connection in pairs(self._connections) do
 		connection:Disconnect()
 	end
 end

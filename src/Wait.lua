@@ -7,7 +7,7 @@ local function Wait(self)
 		error(message, 2)
 	end
 
-	table.insert(self.__waiters, coroutine.running())
+	table.insert(self._waiters, coroutine.running())
 	return coroutine.yield()
 end
 

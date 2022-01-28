@@ -2,9 +2,9 @@ local strict = require(script.Parent:WaitForChild("strict"))
 
 local function new()
 	local Signal = strict({
-		__connections = {},
-		__callbacks = {},
-		__waiters = {},
+		_connections = {},
+		_callbacks = {},
+		_waiters = {},
 
 		Fire = require(script.Parent:WaitForChild("Fire")),
 		Wait = require(script.Parent:WaitForChild("Wait")),
