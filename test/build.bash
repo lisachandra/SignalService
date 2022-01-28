@@ -16,12 +16,6 @@ fi
 
 mkdir test/Packages/_Index/zxibs_signalservice
 
-if [[ -s ../DEPENDENCIES.toml ]]; then
-    declare -A DEPENDENCIES
-
-
-fi
-
 cp -R src test/Packages/_Index/zxibs_signalservice/signalservice
 echo 'return require(script.Parent._Index["zxibs_signalservice"]["signalservice"])' > test/Packages/SignalService.lua
 
