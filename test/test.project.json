@@ -13,7 +13,7 @@
             
             "TestEZ": {
                 "$ignoreUnknownInstances": true,
-                "$path": "../modules/testez"
+                "$path": "testez"
             },
 
             "Tests": {
