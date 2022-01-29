@@ -140,7 +140,7 @@ return function()
                 NewDispatch = function() end
             })
 
-            expect(signalObject.__dispatchHandler.NewDispatch).to.be.a("function")
+            expect(signalObject._dispatchHandler.NewDispatch).to.be.a("function")
         end)
     end)
 

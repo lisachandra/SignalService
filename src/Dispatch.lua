@@ -14,7 +14,7 @@ local function dispatchCheck(self, action)
 					.. debug.traceback()
 		end
 
-		if not rawget(self, "__dispatchHandler") then
+		if not rawget(self, "_dispatchHandler") then
 			return false,
 				"error in function Dispatch (You must add a dispatch handler using onDispatch before dispatching an action!)"
 					.. debug.traceback()
@@ -29,7 +29,7 @@ end
 local function Dispatch(self, action)
 	assert(dispatchCheck(self, action))
 
-	return self.__dispatchHandler(action)
+	return self._dispatchHandler(action)
 end
 
 return Dispatch

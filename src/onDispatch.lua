@@ -29,13 +29,13 @@ local function onDispatch(self, dispatchHandlers)
 
 	rawset(
 		self,
-		"__dispatchHandler",
+		"_dispatchHandler",
 		setmetatable(dispatchHandlers, {
 			__call = function(_self, action)
 				local actionType = tostring(action.type)
 				action.type = nil
 
-				if not self.__dispatchHandler[actionType] then
+				if not self._dispatchHandler[actionType] then
 					local message = "error while dispatching an action (action "
 						.. actionType
 						.. " doesn't exist)"
@@ -44,7 +44,7 @@ local function onDispatch(self, dispatchHandlers)
 					error(message, 2)
 				end
 
-				return self.__dispatchHandler[actionType](action)
+				return self._dispatchHandler[actionType](action)
 			end,
 		})
 	)
