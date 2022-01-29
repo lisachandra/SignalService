@@ -4,7 +4,7 @@ DEPENDENCIES=$(awk '$0 == "[dependencies]" {i=1;next};i && i >= 0' wally.toml)
 
 cd test
 
-echo "$DEPENDENCIES" > wally.toml
+echo "$DEPENDENCIES" >> wally.toml
 wally install
 
 cd ..
