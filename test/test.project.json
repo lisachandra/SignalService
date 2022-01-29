@@ -5,10 +5,15 @@
 
         "ReplicatedStorage": {
             "$className": "ReplicatedStorage",
-
+            
             "Packages": {
                 "$ignoreUnknownInstances": true,
                 "$path": "Packages"
+            },
+            
+            "TestEZ": {
+                "$ignoreUnknownInstances": true,
+                "$path": "../modules/testez"
             },
 
             "Tests": {
