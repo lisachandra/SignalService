@@ -5,15 +5,15 @@
 
         "ReplicatedStorage": {
             "$className": "ReplicatedStorage",
+
+            "DevPackages": {
+                "$ignoreUnknownInstances": true,
+                "$path": "DevPackages"
+            },
             
             "Packages": {
                 "$ignoreUnknownInstances": true,
                 "$path": "Packages"
-            },
-            
-            "TestEZ": {
-                "$ignoreUnknownInstances": true,
-                "$path": "testez"
             },
 
             "Tests": {
