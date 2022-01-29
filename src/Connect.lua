@@ -26,6 +26,8 @@ local function Connect(self, callbackFunction)
 		_signal = self,
 		_key = key,
 
+        Connected = true,
+
 		Disconnect = require(script.Parent:WaitForChild("Disconnect")),
 	}, "Connection")
 

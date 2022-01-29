@@ -10,7 +10,7 @@ local function Disconnect(self)
 	self._signal._connections[self._key] = nil
 	self._signal._callbacks[self._key] = nil
 
-	setmetatable(self, { __mode = "kv" })
+	self.Connected = false
 end
 
 return Disconnect

@@ -37,9 +37,14 @@ return function()
             local connection1 = signalObject:Connect(function() end)
 
             signalObject:Destroy()
+
+            expect(SignalService.isSignal(signalObject)).to.be.equal(false)
+
             expect(signalObject._callbacks[connection1._key]).to.be.equal(nil)
             expect(signalObject._callbacks[connection._key]).to.be.equal(nil)
-            expect(SignalService.isSignal(signalObject)).to.be.equal(false)
+
+            expect(connection1.Connected).to.be.equal(false)
+            expect(connection.Connected).to.be.equal(false)
         end)
     end)
 
@@ -50,6 +55,7 @@ return function()
 
             local connection = signalObject:Connect(function() end)
 
+            expect(connection.Connected).to.be.equal(true)
             expect(signalObject._callbacks[connection._key]).to.be.a("function")
             expect(signalObject._connections[connection._key]).to.be.a("table")
             expect(SignalService.isSignal(connection)).to.be.equal(true)
@@ -79,6 +85,8 @@ return function()
             local connection = signalObject:Connect(function() end)
 
             connection:Disconnect()
+
+            expect(connection.Connected).to.be.equal(false)
             expect(signalObject._callbacks[connection._key]).to.be.equal(nil)
             expect(signalObject._connections[connection._key]).to.be.equal(nil)
         end)
@@ -94,6 +102,10 @@ return function()
             local connection1 = signalObject:Connect(function() end)
 
             signalObject:DisconnectAll()
+
+            expect(connection.Connected).to.be.equal(false)
+            expect(connection1.Connected).to.be.equal(false)
+
             expect(signalObject._callbacks[connection._key]).to.be.equal(nil)
             expect(signalObject._connections[connection._key]).to.be.equal(nil)
 
