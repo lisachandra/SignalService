@@ -20,6 +20,15 @@
                 "$ignoreUnknownInstances": true,
                 "$path": "Tests"
             }
+        },
+
+        "ServerScriptService": {
+            "$className": "ServerScriptService",
+
+            "runner": {
+                "$ignoreUnknownInstances": true,
+                "$path": "runner.server.lua"
+            }
         }
     }
 }
