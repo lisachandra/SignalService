@@ -35,7 +35,10 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Run tests
-        run: run-in-roblox --place test/signalservice-test.rbxlx --script test/runner.server.lua
+        shell: bash
+        run: |
+          chmod +x test/run.bash
+          ./test/run.bash
 
   code-quality:
     needs: tests
