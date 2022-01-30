@@ -103,7 +103,7 @@ return function()
 
             signalObject:DisconnectAll()
 
-            expect(connection.Connected).to.be.equal(true)
+            expect(connection.Connected).to.be.equal(false)
             expect(connection1.Connected).to.be.equal(false)
 
             expect(signalObject._callbacks[connection._key]).to.be.equal(nil)
