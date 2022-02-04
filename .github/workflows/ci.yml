@@ -26,12 +26,14 @@ jobs:
           ./test/build.bash
 
       - name: Install Roblox Studio
+        timeout-minutes: 5
         uses: OrbitalOwen/roblox-win-installer-action@1.1
         with:
           cookie: ${{ secrets.ROBLOSECURITY }}
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Run tests
+        timeout-minutes: 5
         shell: bash
         run: |
           chmod +x test/run.bash
