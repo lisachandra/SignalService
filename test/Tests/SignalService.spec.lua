@@ -4,7 +4,7 @@ return function()
     local SignalService = require(Packages:WaitForChild("SignalService"))
 
     describe("isSignal", function()
-        it("should be true", function()
+        it("should be true for Signal type", function()
             local signalObject = setmetatable({}, {
                 __tostring = function()
                     return "Signal"
@@ -14,9 +14,23 @@ return function()
             expect(SignalService.isSignal(signalObject)).to.be.equal(true)
         end)
 
-        it("should be false", function()
+        it("should be true for Connection type", function()
+            local connectionObject = setmetatable({}, {
+                __tostring = function()
+                    return "Connection"
+                end
+            })
+
+            expect(SignalService.isSignal(connectionObject)).to.be.equal(true)
+        end)
+
+        it("should be false and return the correct error message", function()
             local fakeSignalObject = {}
-            expect(SignalService.isSignal(fakeSignalObject)).to.be.equal(false)
+
+            local success, result = SignalService.isSignal(fakeSignalObject)
+
+            expect(success).to.be.equal(false)
+            expect(result:match("Signal/Connection expected") ~= nil).to.be.equal(true)
         end)
     end)
 
@@ -30,7 +44,7 @@ return function()
     end)
 
     describe("destroy", function()
-        it("should destroy the signal and disconnect all connections", function(context)
+        it("should destroy the signal and disconnect all connections", function()
             local signalObject = SignalService.new()
 
             local connection = signalObject:Connect(function() end)
@@ -45,6 +59,18 @@ return function()
 
             expect(connection1.Connected).to.be.equal(false)
             expect(connection.Connected).to.be.equal(false)
+        end)
+
+        it("should error with the correct error message", function(context)
+            local signalObject = SignalService.new()
+            context.addSignal(signalObject)
+
+            local success, result: string = pcall(function()
+                signalObject.Destroy()
+            end)
+
+            expect(success).to.be.equal(false)
+            expect(result:match("Expected `:` not `.`") ~= nil).to.be.equal(true)
         end)
     end)
 
