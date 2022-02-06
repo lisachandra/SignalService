@@ -26,7 +26,6 @@ jobs:
           ./test/build.bash
 
       - name: Install Roblox Studio
-        timeout-minutes: 5
         run: |
           Invoke-WebRequest -Uri "https://github.com/OrbitalOwen/roblox-win-installer/archive/0.5.zip" -OutFile roblox-win-installer.zip;
           Expand-Archive -LiteralPath roblox-win-installer.zip -DestinationPath .;
@@ -45,7 +44,6 @@ jobs:
         run: REG ADD HKCU\Software\RobloxStudioBrowser\roblox.com /t REG_SZ /v .RBXID /d "${{ secrets.RBXID }}"
 
       - name: Run tests
-        timeout-minutes: 5
         shell: bash
         run: |
           chmod +x test/run.bash
